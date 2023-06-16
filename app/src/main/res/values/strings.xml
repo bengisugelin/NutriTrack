@@ -1,3 +1,13 @@
 <resources>
     <string name="app_name">NutriTrack</string>
+
+    <string-array name="eat_and_burn_times">
+        <item>Breakfast</item>
+        <item>Lunch</item>
+        <item>Dinner</item>
+        <item>Snacks</item>
+        <item>Exercise</item>
+    </string-array>
+
+
 </resources>
