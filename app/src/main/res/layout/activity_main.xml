@@ -126,11 +126,14 @@
         android:id="@+id/recyclerView_addconsumption"
         android:layout_width="400dp"
         android:layout_height="289dp"
-        android:layout_marginBottom="64dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.454"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent">
+
+    </androidx.recyclerview.widget.RecyclerView>
+
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

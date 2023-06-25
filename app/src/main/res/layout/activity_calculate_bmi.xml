@@ -12,9 +12,9 @@
         android:id="@+id/calculatebmi_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="120dp"
-        android:text="Let's Calculate Your Body Mass Index (BMI) !"
+        android:layout_marginTop="48dp"
         android:fontFamily="serif"
+        android:text="Let's Calculate Your Body Mass Index (BMI) !"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -24,7 +24,7 @@
         android:id="@+id/calculatebmi_height"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="120dp"
+        android:layout_marginTop="48dp"
         android:ems="10"
         android:hint="Your height (cm)"
         android:inputType="number"
@@ -49,7 +49,7 @@
         app:layout_constraintTop_toBottomOf="@+id/calculatebmi_height" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/btn_bmicalculate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
@@ -57,4 +57,24 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/calculatebmi_weight" />
+
+    <ImageView
+        android:id="@+id/bmi_imageview"
+        android:layout_width="377dp"
+        android:layout_height="76dp"
+        android:layout_marginTop="32dp"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_bmicalculate"
+        app:srcCompat="@drawable/bmi_image" />
+
+    <TextView
+        android:id="@+id/bmiResult"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/bmi_imageview" />
 </androidx.constraintlayout.widget.ConstraintLayout>
