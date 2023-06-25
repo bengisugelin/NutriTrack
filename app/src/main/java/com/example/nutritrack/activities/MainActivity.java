@@ -5,6 +5,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
+import android.widget.TextView;
 
 import com.example.nutritrack.adapters.C_RecyclerViewAdapter;
 import com.example.nutritrack.models.ConsumptionModel;
@@ -15,6 +16,7 @@ import java.util.ArrayList;
 public class MainActivity extends AppCompatActivity {
 
 
+    TextView showAmountcalorieLeft;
     ArrayList<ConsumptionModel> consumptionModels = new ArrayList<>();
     int [] consumptionImages = {R.drawable.baseline_breakfast_24,
             R.drawable.baseline_food_bank_24,
@@ -33,6 +35,11 @@ public class MainActivity extends AppCompatActivity {
         C_RecyclerViewAdapter adapter = new C_RecyclerViewAdapter(this, consumptionModels);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+
+
+        showAmountcalorieLeft = findViewById(R.id.textShowCalorieLeft);
+        showAmountcalorieLeft.setText("1774");
     }
 
     private void setupConsumptionItems(){
