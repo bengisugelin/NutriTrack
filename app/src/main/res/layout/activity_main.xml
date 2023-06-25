@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity"
+    tools:context=".activities.MainActivity"
     android:background="@drawable/background2">
 
 
@@ -17,6 +17,9 @@
         app:layout_constraintBottom_toTopOf="@+id/recyclerView_addconsumption"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
+
+
+
 
     <ProgressBar
         android:id="@+id/progressBar"

@@ -1,4 +1,4 @@
-package com.example.nutritrack;
+package com.example.nutritrack.models;
 
 public class ConsumptionModel {
 
