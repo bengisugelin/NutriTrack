@@ -1,10 +1,14 @@
-package com.example.nutritrack;
+package com.example.nutritrack.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
+
+import com.example.nutritrack.adapters.C_RecyclerViewAdapter;
+import com.example.nutritrack.models.ConsumptionModel;
+import com.example.nutritrack.R;
 
 import java.util.ArrayList;
 
