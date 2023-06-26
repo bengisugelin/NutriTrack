@@ -28,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        RecyclerView recyclerView = findViewById(R.id.recyclerView_addconsumption);
+        RecyclerView recyclerView = findViewById(R.id.recyclerView_addconsumption_frag);
 
         setupConsumptionItems();
 
@@ -38,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-        showAmountcalorieLeft = findViewById(R.id.textShowCalorieLeft);
+        showAmountcalorieLeft = findViewById(R.id.textShowCalorieLeft_frag);
         showAmountcalorieLeft.setText("1774");
     }
 
