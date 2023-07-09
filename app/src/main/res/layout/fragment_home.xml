@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".fragments.HomeFragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".activities.MainActivity"
+        android:background="@drawable/background2">
+
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="Hello World!"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/progressBar_frag" />
+
+
+        <ProgressBar
+            android:id="@+id/progressBar_frag"
+            style="?android:attr/progressBarStyle"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:indeterminateOnly="false"
+            android:progressDrawable="@drawable/circle"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.54"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:progress="60" />
+
+        <TextView
+            android:id="@+id/textShowCalorieLeft_frag"
+            android:layout_width="114dp"
+            android:layout_height="49dp"
+            android:fontFamily="serif"
+            android:textAlignment="center"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:textColor="@color/teal_700"
+            android:textSize="34sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@+id/progressBar_frag"
+            app:layout_constraintEnd_toEndOf="@+id/progressBar_frag"
+            app:layout_constraintStart_toStartOf="@+id/progressBar_frag"
+            app:layout_constraintTop_toTopOf="@+id/progressBar_frag"
+            tools:text="1774" />
+
+        <TextView
+            android:id="@+id/textkcalleft_frag"
+            android:layout_width="141dp"
+            android:layout_height="29dp"
+            android:fontFamily="serif"
+            android:textAlignment="center"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:textColor="@color/teal_700"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="@+id/progressBar_frag"
+            app:layout_constraintStart_toStartOf="@+id/progressBar_frag"
+            app:layout_constraintTop_toBottomOf="@+id/textShowCalorieLeft_frag"
+            tools:text="KCAL LEFT" />
+
+        <TextView
+            android:id="@+id/textViewCalorieAmountEaten_frag"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:fontFamily="serif"
+            android:text="0"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/textViewCalorieConsumed_frag"
+            app:layout_constraintEnd_toStartOf="@+id/progressBar_frag"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/progressBar_frag"
+            app:layout_constraintVertical_bias="1.0" />
+
+        <TextView
+            android:id="@+id/textViewCalorieAmountEaten2_fr"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="serif"
+            android:text="0"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/textViewCalorieConsumed2_frag"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.476"
+            app:layout_constraintStart_toEndOf="@+id/progressBar_frag"
+            app:layout_constraintTop_toTopOf="@+id/progressBar_frag"
+            app:layout_constraintVertical_bias="1.0" />
+
+        <TextView
+            android:id="@+id/textViewCalorieConsumed_frag"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:fontFamily="serif"
+            android:text="EATEN"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="@+id/progressBar_frag"
+            app:layout_constraintEnd_toStartOf="@+id/progressBar_frag"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/progressBar_frag" />
+
+        <TextView
+            android:id="@+id/textViewCalorieConsumed2_frag"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="serif"
+            android:text="BURNED"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="@+id/progressBar_frag"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/progressBar_frag"
+            app:layout_constraintTop_toTopOf="@+id/progressBar_frag" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerView_addconsumption_frag"
+            android:layout_width="400dp"
+            android:layout_height="289dp"
+            android:layout_marginTop="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.454"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView">
+
+        </androidx.recyclerview.widget.RecyclerView>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</FrameLayout>
