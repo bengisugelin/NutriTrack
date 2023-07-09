@@ -8,17 +8,17 @@
     android:background="@drawable/background2">
 
     <TextView
-        android:id="@+id/txtfname"
+        android:id="@+id/txt_username"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="52dp"
         android:layout_marginTop="52dp"
-        android:text="First Name:"
+        android:text="Username"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/edittext_nameinput"
+        android:id="@+id/edittext_username"
         android:layout_width="212dp"
         android:layout_height="48dp"
         android:layout_marginStart="12dp"
@@ -28,7 +28,7 @@
         android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toEndOf="@+id/txtfname"
+        app:layout_constraintStart_toEndOf="@+id/txt_username"
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="SpeakableTextPresentCheck" />
 
@@ -38,6 +38,55 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="52dp"
         android:layout_marginTop="24dp"
+        android:text="Password:"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_username" />
+
+    <EditText
+        android:id="@+id/edittext_passwordinput"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:layout_marginEnd="64dp"
+        android:ems="10"
+        android:inputType="textPassword"
+        android:minHeight="48dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/txtlname"
+        app:layout_constraintTop_toBottomOf="@+id/edittext_username"
+        tools:ignore="SpeakableTextPresentCheck" />
+
+    <TextView
+        android:id="@+id/txtfname"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="52dp"
+        android:layout_marginTop="64dp"
+        android:text="First Name:"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtlname" />
+
+    <EditText
+        android:id="@+id/edittext_nameinput"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="64dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:minHeight="48dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/txtfname"
+        app:layout_constraintTop_toBottomOf="@+id/edittext_passwordinput"
+        tools:ignore="MissingConstraints,SpeakableTextPresentCheck" />
+
+    <TextView
+        android:id="@+id/textview_lname"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="52dp"
+        android:layout_marginTop="32dp"
         android:text="Last Name:"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtfname" />
@@ -49,60 +98,11 @@
         android:layout_marginStart="12dp"
         android:layout_marginEnd="64dp"
         android:ems="10"
-        android:inputType="textPassword"
+        android:inputType="textPersonName"
         android:minHeight="48dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/txtlname"
+        app:layout_constraintStart_toEndOf="@+id/textview_lname"
         app:layout_constraintTop_toBottomOf="@+id/edittext_nameinput"
-        tools:ignore="SpeakableTextPresentCheck" />
-
-    <TextView
-        android:id="@+id/txtusername"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="52dp"
-        android:layout_marginTop="64dp"
-        android:text="Username:"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtlname" />
-
-    <EditText
-        android:id="@+id/edittext_username"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="12dp"
-        android:layout_marginTop="32dp"
-        android:layout_marginEnd="64dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:minHeight="48dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/txtusername"
-        app:layout_constraintTop_toBottomOf="@+id/edittext_surnameinput"
-        tools:ignore="MissingConstraints,SpeakableTextPresentCheck" />
-
-    <TextView
-        android:id="@+id/textView6"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="52dp"
-        android:layout_marginTop="32dp"
-        android:text="Password:"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtusername" />
-
-    <EditText
-        android:id="@+id/edittext_passwordinput"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="12dp"
-        android:layout_marginEnd="64dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:minHeight="48dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/textView6"
-        app:layout_constraintTop_toBottomOf="@+id/edittext_username"
         tools:ignore="MissingConstraints,SpeakableTextPresentCheck" />
 
     <TextView
@@ -113,7 +113,7 @@
         android:layout_marginTop="64dp"
         android:text="DOB:"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView6" />
+        app:layout_constraintTop_toBottomOf="@+id/textview_lname" />
 
     <EditText
         android:id="@+id/edittext_dobinput"
@@ -128,7 +128,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.952"
         app:layout_constraintStart_toEndOf="@+id/txtdob"
-        app:layout_constraintTop_toBottomOf="@+id/edittext_passwordinput"
+        app:layout_constraintTop_toBottomOf="@+id/edittext_surnameinput"
         tools:ignore="MissingConstraints,SpeakableTextPresentCheck" />
 
     <TextView

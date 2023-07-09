@@ -4,14 +4,14 @@ import java.sql.Date;
 
 public class UserModel {
 
-    private int id;
+
     private String fname;
     private String lname;
 
     private String username;
     private String password;
 
-    private Date dob;
+    private String dob;
     private String email;
     private double height;  //cm
     private double weight;  //kg
@@ -19,8 +19,7 @@ public class UserModel {
     private String activityLevel; //sedentary, active etc.
 
 
-    public UserModel(int id, String fname, String lname, String username, String password, Date dob, String email, double height, double weight, String activitytype) {
-        this.id = id;
+    public UserModel( String fname, String lname, String username, String password, String dob, String email, double height, double weight, String activitytype) {
         this.fname = fname;
         this.lname = lname;
         this.username = username;
@@ -35,13 +34,7 @@ public class UserModel {
     public UserModel() {
     }
 
-    public int getId() {
-        return id;
-    }
 
-    public void setId(int id) {
-        this.id = id;
-    }
 
     public String getFname() {
         return fname;
@@ -75,11 +68,11 @@ public class UserModel {
         this.password = password;
     }
 
-    public Date getDob() {
+    public String getDob() {
         return dob;
     }
 
-    public void setDob(Date dob) {
+    public void setDob(String dob) {
         this.dob = dob;
     }
 
@@ -119,7 +112,6 @@ public class UserModel {
     @Override
     public String toString() {
         return "UserModel{" +
-                "id=" + id +
                 ", fname='" + fname + '\'' +
                 ", lname='" + lname + '\'' +
                 ", username='" + username + '\'' +
