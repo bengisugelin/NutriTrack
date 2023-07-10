@@ -10,6 +10,14 @@
     </string-array>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string-array name="activity_level">
+        <item>once a week</item>
+        <item>twice a week</item>
+        <item>three times a week</item>
+        <item>more than 3 times a week</item>
+        <item>2 times in a month</item>
+        <item>none</item>
+        </string-array>
 
 
 </resources>

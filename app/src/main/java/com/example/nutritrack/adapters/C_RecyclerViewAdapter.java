@@ -16,7 +16,6 @@ import com.example.nutritrack.models.ConsumptionModel;
 import java.util.ArrayList;
 
 public class C_RecyclerViewAdapter extends RecyclerView.Adapter<C_RecyclerViewAdapter.MyViewHolder> {
-
     Context context;
     ArrayList<ConsumptionModel> consumptionModels;
 
@@ -25,7 +24,6 @@ public class C_RecyclerViewAdapter extends RecyclerView.Adapter<C_RecyclerViewAd
         this.context = context;
         this.consumptionModels = consumptionModels;
     }
-
     @NonNull
     @Override
     public C_RecyclerViewAdapter.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -34,22 +32,18 @@ public class C_RecyclerViewAdapter extends RecyclerView.Adapter<C_RecyclerViewAd
         View view = inflater.inflate(R.layout.recyler_view_consumption_content, parent, false);
         return new C_RecyclerViewAdapter.MyViewHolder(view);
     }
-
     @Override
     public void onBindViewHolder(@NonNull C_RecyclerViewAdapter.MyViewHolder holder, int position) {
 
         holder.tvConsumptionName.setText(consumptionModels.get(position).getConsumptionName());
         holder.imageView.setImageResource(consumptionModels.get(position).getImage());
     }
-
     @Override
     public int getItemCount() {
 
         return consumptionModels.size();
     }
-
     public static class MyViewHolder extends RecyclerView.ViewHolder{
-
         ImageView imageView;
         TextView tvConsumptionName;
         public MyViewHolder(@NonNull View itemView) {
