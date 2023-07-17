@@ -12,7 +12,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.nutritrack.R;
-import com.example.nutritrack.fragments.HomeFragment;
 import com.example.nutritrack.models.UserModel;
 import com.example.nutritrack.repository.DatabaseHeper;
 
@@ -58,7 +57,7 @@ public class LoginActivity extends AppCompatActivity {
                 DatabaseHeper databaseHeper = new DatabaseHeper(LoginActivity.this);
                 List<UserModel> user = databaseHeper.getAllData(usernameinfo);
 
-                Intent logintoapp = new Intent(LoginActivity.this, CoordinatorActivity.class);
+                Intent logintoapp = new Intent(LoginActivity.this, MainActivity.class);
 
                 //Check if the databaase has the username that user entered to the login input area
                 for (int i = 0; i<user.size(); i++){

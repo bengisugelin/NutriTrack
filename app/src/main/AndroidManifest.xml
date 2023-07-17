@@ -12,6 +12,18 @@
         android:theme="@style/Theme.NutriTrack"
         tools:targetApi="31">
         <activity
+            android:name=".SearchActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activities.DiscoverActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activities.LogActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activities.ProfileActivity"
+            android:exported="false" />
+        <activity
             android:name=".activities.NewUserRegisterActivity"
             android:exported="false" />
         <activity
@@ -22,15 +34,6 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
-        <activity
-            android:name=".activities.CoordinatorActivity"
-            android:exported="false">
-<!--            <intent-filter>-->
-<!--                <action android:name="android.intent.action.MAIN" />-->
-
-<!--                <category android:name="android.intent.category.LAUNCHER" />-->
-<!--            </intent-filter>-->
         </activity>
         <activity
             android:name=".activities.CalculateBMIActivity"
@@ -54,8 +57,6 @@
             <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
             <!-- </intent-filter> -->
         </activity>
-
-
     </application>
 
 </manifest>
