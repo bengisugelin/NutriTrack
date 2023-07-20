@@ -12,6 +12,7 @@ import android.view.Window;
 import android.widget.TextView;
 
 import com.example.nutritrack.adapters.C_RecyclerViewAdapter;
+import com.example.nutritrack.adapters.C_RecyclerViewInterface;
 import com.example.nutritrack.models.ConsumptionModel;
 import com.example.nutritrack.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -19,7 +20,7 @@ import com.google.android.material.navigation.NavigationBarView;
 
 import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements C_RecyclerViewInterface {
 
 
     TextView showAmountcalorieLeft;
@@ -36,11 +37,11 @@ public class MainActivity extends AppCompatActivity {
         getSupportActionBar().hide();
         setContentView(R.layout.activity_main);
 
-        RecyclerView recyclerView = findViewById(R.id.recyclerView_addconsumption_frag);
-
+        RecyclerView recyclerView = findViewById(R.id.recyclerView_chooseconsumption);
         setupConsumptionItems();
 
-        C_RecyclerViewAdapter adapter = new C_RecyclerViewAdapter(this, consumptionModels);
+        //create your adapter after you set up the components, otherwise it will be null.
+        C_RecyclerViewAdapter adapter = new C_RecyclerViewAdapter(this, consumptionModels, this);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
@@ -92,5 +93,17 @@ public class MainActivity extends AppCompatActivity {
                      consumptionImages[i]));
 
          }
+    }
+
+    @Override
+    public void onItemClicked(int position) {
+
+        Intent goTotheSearchActivity = new Intent(MainActivity.this, SearchActivity.class);
+
+        getIntent().putExtra("NAME", consumptionModels.get(position).getConsumptionName());
+
+        startActivity(goTotheSearchActivity);
+
+
     }
 }

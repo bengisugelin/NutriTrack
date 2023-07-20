@@ -57,6 +57,12 @@ dependencies {
     // Testing Navigation
     androidTestImplementation "androidx.navigation:navigation-testing:$nav_version"
 
+    //volley dependency
+    implementation("com.android.volley:volley:1.2.1")
+
+    //picasso
+    implementation 'com.squareup.picasso:picasso:2.8'
+
 
 
 }
