@@ -10,6 +10,23 @@
     </string-array>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string-array name="activity_level">
+        <item>once a week</item>
+        <item>twice a week</item>
+        <item>three times a week</item>
+        <item>more than 3 times a week</item>
+        <item>2 times in a month</item>
+        <item>none</item>
+    </string-array>
+    <string name="title_activity_log">LogActivity</string>
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Password</string>
+    <string name="action_sign_in">Sign in or register</string>
+    <string name="action_sign_in_short">Sign in</string>
+    <string name="welcome">"Welcome !"</string>
+    <string name="invalid_username">Not a valid username</string>
+    <string name="invalid_password">Password must be >5 characters</string>
+    <string name="login_failed">"Login failed"</string>
 
 
 </resources>

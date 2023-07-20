@@ -97,7 +97,7 @@ public class DatabaseHeper extends SQLiteOpenHelper {
 
     public List<UserModel> getAllData(String username){
 
-        List<UserModel> retunList = new ArrayList<>();
+        List<UserModel> returnList = new ArrayList<>();
 
         //get data from the database
         String query = "SELECT * FROM " + USER_TABLE_NAME + " WHERE username = ?" ;
@@ -119,18 +119,19 @@ public class DatabaseHeper extends SQLiteOpenHelper {
                 Double weight = Double.parseDouble(cursor.getString(8));
                 String activity_level = cursor.getString(9);
                 UserModel newUser = new UserModel(fname, lname, userName, password, dob, email,height,weight,activity_level);
-                retunList.add(newUser);
+                returnList.add(newUser);
 
             }while(cursor.moveToNext());
         }else{
 
+            Toast.makeText(context, "failed", Toast.LENGTH_SHORT).show();
             //failure. do not add anything to the list.
         }
         //close both the cursor and db when done
         cursor.close();
         db.close();
 
-        return retunList;
+        return returnList;
 
     }//end of checkUserLogin
 }
