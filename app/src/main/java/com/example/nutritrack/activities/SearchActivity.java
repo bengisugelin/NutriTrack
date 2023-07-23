@@ -3,9 +3,16 @@ package com.example.nutritrack.activities;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.view.KeyEvent;
+import android.view.View;
 import android.view.Window;
+import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.Response;
@@ -21,7 +28,9 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
+import java.util.List;
 
 public class SearchActivity extends AppCompatActivity {
 
@@ -29,10 +38,9 @@ public class SearchActivity extends AppCompatActivity {
 
     TextView calorieAmount, totalfatAmount, saturatedFatAmount, cholesterolAmount, SodiumAmount,
             totalCarbonhydrateAmount, dietaryFiberAmount, totalSugarAmount, proteinAmount,
-            vitaminAmount, calciumAmount, ironAmount, potassiumAmount;
+            vitaminAmount, calciumAmount, ironAmount, potassiumAmount, foodtitle;
 
-
-
+    ImageButton btn_searchButton;
     String searchedFood;
 
     private RequestQueue requestQueue;
@@ -60,132 +68,112 @@ public class SearchActivity extends AppCompatActivity {
         calciumAmount = findViewById(R.id.text_CalciumAmount);
         ironAmount = findViewById(R.id.text_IronAmount);
         potassiumAmount = findViewById(R.id.text_PotassiumAmount);
-
+        foodtitle = findViewById(R.id.txtsearchedFood);
+        btn_searchButton = findViewById(R.id.searchButton);
 
         requestQueue = VolleySingleton.getInstance(this).getRequestQueue();
 
         nutritionList = new ArrayList<>();
 
-        //---------fetch nutritions begins-----------------------
-
-
-        String url = "https://api.edamam.com/api/nutrition-data?app_id=e0d93112&app_key=ae1aa249b69cad6d6b3aff0ca4ea61b1&nutrition-type=cooking&ingr=a%20cup%20of%20coffee";
-
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
+        SearchValue.addTextChangedListener(new TextWatcher() {
             @Override
-            public void onResponse(JSONObject response) {
-                try {
-
-                    //GETTING CALORIE AMOUNT
-                    JSONObject totalCalorie = response.getJSONObject("totalNutrients").getJSONObject("ENERC_KCAL");
-                    double calorie_nutritionquantity = totalCalorie.getDouble("quantity");
-
-                    calorieAmount.setText(Double.toString(calorie_nutritionquantity));
-
-                    //GETTING TOTAL FAT AMOUNT
-                    JSONObject totalFat = response.getJSONObject("totalNutrients").getJSONObject("FAT");
-                    double fat_nutritionquantity = totalFat.getDouble("quantity");
-
-                    totalfatAmount.setText(Double.toString(fat_nutritionquantity));
-
-                    //GETTING SATURATED  AMOUNT
-                    JSONObject saturatedFat = response.getJSONObject("totalNutrients").getJSONObject("FASAT");
-                    double saturatedfat_nutritionquantity = saturatedFat.getDouble("quantity");
-
-                    saturatedFatAmount.setText(Double.toString(saturatedfat_nutritionquantity));
-
-                    //GETTING COLESTEROL AMOUNT
-                    JSONObject cholesterol = response.getJSONObject("totalNutrients").getJSONObject("CHOLE");
-                    double cholesterol_nutritionquantity = cholesterol.getDouble("quantity");
-
-                    cholesterolAmount.setText(Double.toString(cholesterol_nutritionquantity));
-
-                    //GETTING SODIUM AMOUNT
-                    JSONObject sodium = response.getJSONObject("totalNutrients").getJSONObject("NA");
-                    double sodium_nutritionquantity = sodium.getDouble("quantity");
-
-                    SodiumAmount.setText(Double.toString(sodium_nutritionquantity));
-
-
-                    //GETTING TOTAL CARBONHYDRATE AMOUNT
-                    JSONObject carbonhydrate = response.getJSONObject("totalNutrients").getJSONObject("CHOCDF");
-                    double carbonhydrate_nutritionquantity = carbonhydrate.getDouble("quantity");
-
-                    totalCarbonhydrateAmount.setText(Double.toString(carbonhydrate_nutritionquantity));
-
-                    //GETTING DIETARY FIBER  AMOUNT
-                    JSONObject dietaryFiber = response.getJSONObject("totalNutrients").getJSONObject("FIBTG");
-                    double dietaryFiber_nutritionquantity = dietaryFiber.getDouble("quantity");
-
-                    dietaryFiberAmount.setText(Double.toString(dietaryFiber_nutritionquantity));
-
-                    //GETTING TOTAL SUGAR AMOUNT
-                    JSONObject totalsugar = response.getJSONObject("totalNutrients").getJSONObject("SUGAR");
-                    double totalsugar_nutritionquantity = totalsugar.getDouble("quantity");
-
-                    totalSugarAmount.setText(Double.toString(totalsugar_nutritionquantity));
-
-                    //GETTING PROTEIN AMOUNT
-                    JSONObject protein = response.getJSONObject("totalNutrients").getJSONObject("PROCNT");
-                    double protein_nutritionquantity = protein.getDouble("quantity");
-
-                    proteinAmount.setText(Double.toString(protein_nutritionquantity));
-
-
-                    //GETTING CALCIUM AMOUNT
-                    JSONObject totalCalcium = response.getJSONObject("totalNutrients").getJSONObject("CA");
-                    double calcium_nutritionquantity = totalCalcium.getDouble("quantity");
-
-                    calciumAmount.setText(Double.toString(calcium_nutritionquantity));
-
-                    //GETTING IRON AMOUNT
-                    JSONObject iron = response.getJSONObject("totalNutrients").getJSONObject("FE");
-                    double iron_nutritionquantity = iron.getDouble("quantity");
-
-                    ironAmount.setText(Double.toString(iron_nutritionquantity));
-
-                    //GETTING POTASSIUM AMOUNT
-                    JSONObject potassium = response.getJSONObject("totalNutrients").getJSONObject("K");
-                    double potassium_nutritionquantity = potassium.getDouble("quantity");
-
-                    potassiumAmount.setText(Double.toString(potassium_nutritionquantity));
-
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
             }
-        },
-                new Response.ErrorListener() {
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+            }
+            @Override
+            public void afterTextChanged(Editable editable) {
+                searchedFood = SearchValue.getText().toString();
+                foodtitle.setText(searchedFood);
+            }
+        });
+
+        btn_searchButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                DecimalFormat decimalFormat = new DecimalFormat("#.##");
+
+                String foodnametoinserttoURL = searchedFood.replace(" ", "%20").toLowerCase();
+
+                //Toast.makeText(SearchActivity.this, foodnametoinserttoURL, Toast.LENGTH_SHORT).show();
+
+                String url = "https://api.edamam.com/api/nutrition-data?app_id=e0d93112&app_key=ae1aa249b69cad6d6b3aff0ca4ea61b1&nutrition-type=cooking&ingr=" + foodnametoinserttoURL;
+
+//                String url = "https://api.edamam.com/api/nutrition-data?app_id=e0d93112&app_key=ae1aa249b69cad6d6b3aff0ca4ea61b1&nutrition-type=cooking&ingr=a%20cup%20of%20coffee";
+
+                //---------fetch nutritions begins-----------------------
+                JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
                     @Override
-                    public void onErrorResponse(VolleyError error) {
-                        // Handle API call failure
+                    public void onResponse(JSONObject response) {
+                        try {
+
+                            ArrayList<String> keys = new ArrayList<>();
+                            keys.add("ENERC_KCAL");
+                            keys.add("FAT");
+                            keys.add("FASAT");
+                            keys.add("CHOLE");
+                            keys.add("NA");
+                            keys.add("CHOCDF");
+                            keys.add("FIBTG");
+                            keys.add("SUGAR");
+                            keys.add("PROCNT");
+                            keys.add("CA");
+                            keys.add("FE");
+                            keys.add("K");
+
+                            ArrayList<TextView> texviewnames = new ArrayList<>();
+                            texviewnames.add(calorieAmount);
+                            texviewnames.add(totalfatAmount);
+                            texviewnames.add(saturatedFatAmount);
+                            texviewnames.add(cholesterolAmount);
+                            texviewnames.add(SodiumAmount);
+                            texviewnames.add(totalCarbonhydrateAmount);
+                            texviewnames.add(dietaryFiberAmount);
+                            texviewnames.add(totalSugarAmount);
+                            texviewnames.add(proteinAmount);
+                            texviewnames.add(calciumAmount);
+                            texviewnames.add(ironAmount);
+                            texviewnames.add(potassiumAmount);
+
+
+                            for (int i = 0; i<keys.size(); i++){
+                                JSONObject obj = response.getJSONObject("totalNutrients").getJSONObject(keys.get(i));
+                                double quantity = obj.getDouble("quantity");
+                                String unit = obj.getString("unit");
+
+                                String formatAmount = decimalFormat.format(quantity);
+                                texviewnames.get(i).setText(formatAmount + " " +unit);
+
+                            }
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
                     }
-                }
-        );
+                },
+                        new Response.ErrorListener() {
+                            @Override
+                            public void onErrorResponse(VolleyError error) {
+                                // Handle API call failure
+                            }
+                        }
+                );
 
-        RequestQueue requestQueue = Volley.newRequestQueue(this); // 'this' refers to the current context
-        requestQueue.add(jsonObjectRequest);
-        //---------fetch nutritions ends-----------------------
-
-        searchedFood = SearchValue.getText().toString();
+                RequestQueue requestQueue = Volley.newRequestQueue(SearchActivity.this); // 'this' refers to the current context
+                requestQueue.add(jsonObjectRequest);
+                //---------fetch nutritions ends-----------------------
 
 
+            }
 
-//        calorieAmount.setText(Double.toString(nutritionModel.getCalories()));
-//        totalfatAmount.setText(Double.toString(nutritionModel.getTotal_fat()));
-//        saturatedFatAmount.setText(Double.toString(nutritionModel.getSaturated_fat()));
-//        cholesterolAmount.setText(Double.toString(nutritionModel.getCholesterol()));
-//        SodiumAmount.setText(Double.toString(nutritionModel.getSodium()));
-//        totalCarbonhydrateAmount.setText(Double.toString(nutritionModel.getTotal_carbonhydrate()));
-//        dietaryFiberAmount.setText(Double.toString(nutritionModel.getDietary_fiber()));
-//        totalSugarAmount.setText(Double.toString(nutritionModel.getTotal_sugars()));
-//        proteinAmount.setText(Double.toString(nutritionModel.getProtein()));
-//        calciumAmount.setText(Double.toString(nutritionModel.getCalcium()));
-//        ironAmount.setText(Double.toString(nutritionModel.getIron()));
-//        potassiumAmount.setText(Double.toString(nutritionModel.getPotassium()));
+        });
+
+
+        // String url = "https://api.edamam.com/api/nutrition-data?app_id=e0d93112&app_key=ae1aa249b69cad6d6b3aff0ca4ea61b1&nutrition-type=cooking&ingr=a%20cup%20of%20coffee";
 
 
     }
-
 
 }
