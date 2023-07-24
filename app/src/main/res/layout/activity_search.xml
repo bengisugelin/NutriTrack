@@ -1,0 +1,451 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activities.SearchActivity"
+    android:background="@drawable/background2">
+
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="365dp"
+        android:layout_height="49dp"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="4dp"
+        android:layout_weight="1"
+        android:text=" Please search what you looking for with quantity and unit. e.g. 1 apple, 1 cup rice "
+        android:textStyle="italic"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editText_searchedfood" />
+
+    <TextView
+        android:id="@+id/txtsearchedFood"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="36dp"
+        android:layout_weight="1"
+        android:text="Food Name"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.418"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView6" />
+
+    <ImageButton
+        android:id="@+id/searchButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:minHeight="48dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/editText_searchedfood"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/baseline_search_24"
+        tools:ignore="SpeakableTextPresentCheck"
+        android:backgroundTint="@color/green_dark" />
+
+    <TextView
+        android:id="@+id/txt_Calories"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="20dp"
+        android:text="Calories"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtsearchedFood" />
+
+    <TextView
+        android:id="@+id/txt_calorieAmount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="72dp"
+        android:layout_marginTop="20dp"
+        android:text="0"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@+id/txt_Calories"
+        app:layout_constraintTop_toBottomOf="@+id/txtsearchedFood" />
+
+    <TextView
+        android:id="@+id/txt_calorieUnit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="20dp"
+        android:text="kcal"
+        android:textSize="24sp"
+        app:layout_constraintStart_toEndOf="@+id/txt_calorieAmount"
+        app:layout_constraintTop_toBottomOf="@+id/txtsearchedFood" />
+
+    <TextView
+        android:id="@+id/text_totalFat"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="16dp"
+        android:text="Total Fat"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_Calories" />
+
+    <TextView
+        android:id="@+id/text_totalFatAmount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="44dp"
+        android:layout_marginTop="16dp"
+        android:text="0"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@+id/text_totalFat"
+        app:layout_constraintTop_toBottomOf="@+id/txt_Calories" />
+
+    <TextView
+        android:id="@+id/txt_totalFatUnit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        app:layout_constraintStart_toEndOf="@+id/text_totalFatAmount"
+        app:layout_constraintTop_toTopOf="@+id/text_totalFatAmount" />
+
+    <TextView
+        android:id="@+id/txt_saturatedtFatUnit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        app:layout_constraintStart_toEndOf="@+id/text_SaturatedFatAmount"
+        app:layout_constraintTop_toTopOf="@+id/text_SaturatedFatAmount" />
+
+    <TextView
+        android:id="@+id/text_SaturatedFat"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="48dp"
+        android:layout_marginTop="8dp"
+        android:text="Saturated Fat"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/text_totalFat" />
+
+    <TextView
+        android:id="@+id/text_SaturatedFatAmount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="8dp"
+        android:text="0"
+        android:textSize="16sp"
+        app:layout_constraintStart_toEndOf="@+id/text_SaturatedFat"
+        app:layout_constraintTop_toBottomOf="@+id/text_totalFatAmount" />
+
+    <TextView
+        android:id="@+id/text_Cholesterol"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="8dp"
+        android:text="Cholesterol"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/text_SaturatedFat" />
+
+    <TextView
+        android:id="@+id/text_CholesterolAmount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="8dp"
+        android:text="0"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@+id/text_Cholesterol"
+        app:layout_constraintTop_toBottomOf="@+id/text_SaturatedFatAmount" />
+
+    <TextView
+        android:id="@+id/txt_cholesterolUnit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        app:layout_constraintStart_toEndOf="@+id/text_CholesterolAmount"
+        app:layout_constraintTop_toTopOf="@+id/text_CholesterolAmount" />
+
+    <TextView
+        android:id="@+id/text_Sodium"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="8dp"
+        android:text="Sodium "
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/text_Cholesterol" />
+
+    <TextView
+        android:id="@+id/text_SodiumAmount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="48dp"
+        android:layout_marginTop="8dp"
+        android:text="0"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@+id/text_Sodium"
+        app:layout_constraintTop_toBottomOf="@+id/text_CholesterolAmount" />
+
+    <TextView
+        android:id="@+id/txt_sodiumUnit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        app:layout_constraintStart_toEndOf="@+id/text_SodiumAmount"
+        app:layout_constraintTop_toTopOf="@+id/text_SodiumAmount" />
+
+    <TextView
+        android:id="@+id/text_TotalCarbohydrate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="8dp"
+        android:text="Total Carbonhydrate "
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/text_Sodium" />
+
+    <TextView
+        android:id="@+id/text_TotalCarbohydrateAmount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="48dp"
+        android:layout_marginTop="8dp"
+        android:text="0"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@+id/text_TotalCarbohydrate"
+        app:layout_constraintTop_toBottomOf="@+id/text_SodiumAmount" />
+
+    <TextView
+        android:id="@+id/txt_totalCarbsUnit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        app:layout_constraintStart_toEndOf="@+id/text_TotalCarbohydrateAmount"
+        app:layout_constraintTop_toTopOf="@+id/text_TotalCarbohydrateAmount" />
+
+    <TextView
+        android:id="@+id/text_DietaryFiber"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="48dp"
+        android:layout_marginTop="8dp"
+        android:text="	Dietary Fiber"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/text_TotalCarbohydrate" />
+
+    <TextView
+        android:id="@+id/text_DietaryFiberAmount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="8dp"
+        android:text="0"
+        android:textSize="16sp"
+        app:layout_constraintStart_toEndOf="@+id/text_DietaryFiber"
+        app:layout_constraintTop_toBottomOf="@+id/text_TotalCarbohydrateAmount" />
+
+    <TextView
+        android:id="@+id/txt_dietaryFiberUnit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        app:layout_constraintStart_toEndOf="@+id/text_DietaryFiberAmount"
+        app:layout_constraintTop_toTopOf="@+id/text_DietaryFiberAmount" />
+
+    <TextView
+        android:id="@+id/text_TotalSugars"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="48dp"
+        android:layout_marginTop="8dp"
+        android:text="Total Sugars"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/text_DietaryFiber" />
+
+    <TextView
+        android:id="@+id/text_TotalSugarsAmount"
+        android:layout_width="10dp"
+        android:layout_height="24dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="8dp"
+        android:text="0"
+        android:textSize="16sp"
+        app:layout_constraintStart_toEndOf="@+id/text_TotalSugars"
+        app:layout_constraintTop_toBottomOf="@+id/text_DietaryFiberAmount" />
+
+    <TextView
+        android:id="@+id/txt_totalSugarUnit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        app:layout_constraintStart_toEndOf="@+id/text_TotalSugarsAmount"
+        app:layout_constraintTop_toTopOf="@+id/text_TotalSugarsAmount" />
+
+    <TextView
+        android:id="@+id/text_Protein"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="8dp"
+        android:text="Protein "
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/text_TotalSugars" />
+
+    <TextView
+        android:id="@+id/txt_ProteinAmount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="8dp"
+        android:text="0"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@+id/text_Protein"
+        app:layout_constraintTop_toBottomOf="@+id/text_TotalSugarsAmount" />
+
+    <TextView
+        android:id="@+id/txt_proteinUnit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        app:layout_constraintStart_toEndOf="@+id/txt_ProteinAmount"
+        app:layout_constraintTop_toTopOf="@+id/txt_ProteinAmount" />
+
+    <TextView
+        android:id="@+id/text_Calcium"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="8dp"
+        android:text="Calcium "
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/text_Protein" />
+
+    <TextView
+        android:id="@+id/text_CalciumAmount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="8dp"
+        android:text="0"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@+id/text_Calcium"
+        app:layout_constraintTop_toBottomOf="@+id/txt_ProteinAmount" />
+
+    <TextView
+        android:id="@+id/txt_calciumUnit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        app:layout_constraintStart_toEndOf="@+id/text_CalciumAmount"
+        app:layout_constraintTop_toTopOf="@+id/text_CalciumAmount" />
+
+    <TextView
+        android:id="@+id/text_Iron"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="8dp"
+        android:text="Iron "
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/text_Calcium" />
+
+    <TextView
+        android:id="@+id/text_IronAmount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="8dp"
+        android:text="0"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@+id/text_Iron"
+        app:layout_constraintTop_toBottomOf="@+id/text_CalciumAmount" />
+
+    <TextView
+        android:id="@+id/txt_ironUnit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        app:layout_constraintStart_toEndOf="@+id/text_IronAmount"
+        app:layout_constraintTop_toTopOf="@+id/text_IronAmount" />
+
+    <TextView
+        android:id="@+id/text_Potassium"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="8dp"
+        android:text="Potassium "
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/text_Iron" />
+
+    <TextView
+        android:id="@+id/text_PotassiumAmount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="8dp"
+        android:text="0"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@+id/text_Potassium"
+        app:layout_constraintTop_toBottomOf="@+id/text_IronAmount" />
+
+    <TextView
+        android:id="@+id/txt_potassiumUnit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        app:layout_constraintStart_toEndOf="@+id/text_PotassiumAmount"
+        app:layout_constraintTop_toTopOf="@+id/text_PotassiumAmount" />
+
+    <EditText
+        android:id="@+id/editText_searchedfood"
+        android:layout_width="303dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="24dp"
+        android:ems="10"
+        android:hint="Search "
+        android:inputType="textPersonName"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/btn_addNutrition"
+        android:layout_width="395dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="40dp"
+        android:text="Add "
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/text_Potassium" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
