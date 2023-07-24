@@ -5,31 +5,39 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.animation.ValueAnimator;
 import android.content.Intent;
 import android.os.Bundle;
+import android.renderscript.Sampler;
 import android.view.MenuItem;
 import android.view.Window;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.example.nutritrack.adapters.C_RecyclerViewAdapter;
 import com.example.nutritrack.adapters.C_RecyclerViewInterface;
 import com.example.nutritrack.models.ConsumptionModel;
 import com.example.nutritrack.R;
+import com.example.nutritrack.models.nutritionModel;
+import com.example.nutritrack.repository.DatabaseHeper;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements C_RecyclerViewInterface {
 
 
-    TextView showAmountcalorieLeft;
+    TextView showAmountcalorieLeft, caloriAmounteaten;
     ArrayList<ConsumptionModel> consumptionModels = new ArrayList<>();
     int [] consumptionImages = {R.drawable.baseline_breakfast_24,
             R.drawable.baseline_food_bank_24,
     R.drawable.baseline_dinner_dining_24,
     R.drawable.baseline_snack_24,
     R.drawable.baseline_fitness_center_24};
+
+    ProgressBar progressBar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,15 +48,35 @@ public class MainActivity extends AppCompatActivity implements C_RecyclerViewInt
         RecyclerView recyclerView = findViewById(R.id.recyclerView_chooseconsumption);
         setupConsumptionItems();
 
+
         //create your adapter after you set up the components, otherwise it will be null.
         C_RecyclerViewAdapter adapter = new C_RecyclerViewAdapter(this, consumptionModels, this);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
 
+        progressBar = findViewById(R.id.progressBar);
+        showAmountcalorieLeft = findViewById(R.id.textShowCalorieLeft);
+        caloriAmounteaten = findViewById(R.id.textViewCalorieAmountEaten);
 
-        showAmountcalorieLeft = findViewById(R.id.textShowCalorieLeft_frag);
-        showAmountcalorieLeft.setText("1774");
+
+        DatabaseHeper databaseHeper = new DatabaseHeper(MainActivity.this);
+        List<nutritionModel> nutritionList = databaseHeper.getAllNutritionData();
+
+        double totalcalorieeaten = 0;
+
+
+
+        for (int i = 0; i<nutritionList.size(); i++){
+
+            totalcalorieeaten += nutritionList.get(i).getCalories();
+            }
+
+        double calculateCalorieRatio = (totalcalorieeaten / 1774.0 )*100;
+        startAnimator(0, (int) calculateCalorieRatio);
+
+        showAmountcalorieLeft.setText(Integer.toString(1774 - (int)totalcalorieeaten));
+        caloriAmounteaten.setText(Double.toString(totalcalorieeaten));
 
         //BottomNavigation
         BottomNavigationView bottomNavigationView = findViewById(R.id.BottomNavigationView);
@@ -82,6 +110,20 @@ public class MainActivity extends AppCompatActivity implements C_RecyclerViewInt
                 return false;
             }
         });
+    }
+
+    public void startAnimator(int start_no, int end_no){
+        ValueAnimator animator = ValueAnimator.ofInt( start_no, end_no);
+        animator.setDuration(1000);
+        animator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+            @Override
+            public void onAnimationUpdate(@NonNull ValueAnimator valueAnimator) {
+
+                progressBar.setProgress(Integer.parseInt(animator.getAnimatedValue().toString()));
+            }
+
+        });
+        animator.start();
     }
 
     private void setupConsumptionItems(){
