@@ -70,6 +70,17 @@
         app:layout_constraintTop_toBottomOf="@+id/txtsearchedFood" />
 
     <TextView
+        android:id="@+id/txt_calorieUnit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="20dp"
+        android:text="kcal"
+        android:textSize="24sp"
+        app:layout_constraintStart_toEndOf="@+id/txt_calorieAmount"
+        app:layout_constraintTop_toBottomOf="@+id/txtsearchedFood" />
+
+    <TextView
         android:id="@+id/text_totalFat"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -92,6 +103,22 @@
         android:textStyle="bold"
         app:layout_constraintStart_toEndOf="@+id/text_totalFat"
         app:layout_constraintTop_toBottomOf="@+id/txt_Calories" />
+
+    <TextView
+        android:id="@+id/txt_totalFatUnit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        app:layout_constraintStart_toEndOf="@+id/text_totalFatAmount"
+        app:layout_constraintTop_toTopOf="@+id/text_totalFatAmount" />
+
+    <TextView
+        android:id="@+id/txt_saturatedtFatUnit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        app:layout_constraintStart_toEndOf="@+id/text_SaturatedFatAmount"
+        app:layout_constraintTop_toTopOf="@+id/text_SaturatedFatAmount" />
 
     <TextView
         android:id="@+id/text_SaturatedFat"
@@ -140,6 +167,14 @@
         app:layout_constraintTop_toBottomOf="@+id/text_SaturatedFatAmount" />
 
     <TextView
+        android:id="@+id/txt_cholesterolUnit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        app:layout_constraintStart_toEndOf="@+id/text_CholesterolAmount"
+        app:layout_constraintTop_toTopOf="@+id/text_CholesterolAmount" />
+
+    <TextView
         android:id="@+id/text_Sodium"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -162,6 +197,14 @@
         android:textStyle="bold"
         app:layout_constraintStart_toEndOf="@+id/text_Sodium"
         app:layout_constraintTop_toBottomOf="@+id/text_CholesterolAmount" />
+
+    <TextView
+        android:id="@+id/txt_sodiumUnit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        app:layout_constraintStart_toEndOf="@+id/text_SodiumAmount"
+        app:layout_constraintTop_toTopOf="@+id/text_SodiumAmount" />
 
     <TextView
         android:id="@+id/text_TotalCarbohydrate"
@@ -188,6 +231,14 @@
         app:layout_constraintTop_toBottomOf="@+id/text_SodiumAmount" />
 
     <TextView
+        android:id="@+id/txt_totalCarbsUnit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        app:layout_constraintStart_toEndOf="@+id/text_TotalCarbohydrateAmount"
+        app:layout_constraintTop_toTopOf="@+id/text_TotalCarbohydrateAmount" />
+
+    <TextView
         android:id="@+id/text_DietaryFiber"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -210,6 +261,14 @@
         app:layout_constraintTop_toBottomOf="@+id/text_TotalCarbohydrateAmount" />
 
     <TextView
+        android:id="@+id/txt_dietaryFiberUnit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        app:layout_constraintStart_toEndOf="@+id/text_DietaryFiberAmount"
+        app:layout_constraintTop_toTopOf="@+id/text_DietaryFiberAmount" />
+
+    <TextView
         android:id="@+id/text_TotalSugars"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -230,6 +289,14 @@
         android:textSize="16sp"
         app:layout_constraintStart_toEndOf="@+id/text_TotalSugars"
         app:layout_constraintTop_toBottomOf="@+id/text_DietaryFiberAmount" />
+
+    <TextView
+        android:id="@+id/txt_totalSugarUnit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        app:layout_constraintStart_toEndOf="@+id/text_TotalSugarsAmount"
+        app:layout_constraintTop_toTopOf="@+id/text_TotalSugarsAmount" />
 
     <TextView
         android:id="@+id/text_Protein"
@@ -256,6 +323,14 @@
         app:layout_constraintTop_toBottomOf="@+id/text_TotalSugarsAmount" />
 
     <TextView
+        android:id="@+id/txt_proteinUnit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        app:layout_constraintStart_toEndOf="@+id/txt_ProteinAmount"
+        app:layout_constraintTop_toTopOf="@+id/txt_ProteinAmount" />
+
+    <TextView
         android:id="@+id/text_Calcium"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -278,6 +353,14 @@
         android:textStyle="bold"
         app:layout_constraintStart_toEndOf="@+id/text_Calcium"
         app:layout_constraintTop_toBottomOf="@+id/txt_ProteinAmount" />
+
+    <TextView
+        android:id="@+id/txt_calciumUnit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        app:layout_constraintStart_toEndOf="@+id/text_CalciumAmount"
+        app:layout_constraintTop_toTopOf="@+id/text_CalciumAmount" />
 
     <TextView
         android:id="@+id/text_Iron"
@@ -304,6 +387,14 @@
         app:layout_constraintTop_toBottomOf="@+id/text_CalciumAmount" />
 
     <TextView
+        android:id="@+id/txt_ironUnit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        app:layout_constraintStart_toEndOf="@+id/text_IronAmount"
+        app:layout_constraintTop_toTopOf="@+id/text_IronAmount" />
+
+    <TextView
         android:id="@+id/text_Potassium"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -327,6 +418,14 @@
         app:layout_constraintStart_toEndOf="@+id/text_Potassium"
         app:layout_constraintTop_toBottomOf="@+id/text_IronAmount" />
 
+    <TextView
+        android:id="@+id/txt_potassiumUnit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        app:layout_constraintStart_toEndOf="@+id/text_PotassiumAmount"
+        app:layout_constraintTop_toTopOf="@+id/text_PotassiumAmount" />
+
     <EditText
         android:id="@+id/editText_searchedfood"
         android:layout_width="303dp"
@@ -338,5 +437,15 @@
         android:inputType="textPersonName"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/btn_addNutrition"
+        android:layout_width="395dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="40dp"
+        android:text="Add "
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/text_Potassium" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

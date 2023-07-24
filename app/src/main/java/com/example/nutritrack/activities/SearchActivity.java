@@ -2,6 +2,7 @@ package com.example.nutritrack.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -23,6 +24,7 @@ import com.android.volley.toolbox.Volley;
 import com.example.nutritrack.R;
 import com.example.nutritrack.apis.VolleySingleton;
 import com.example.nutritrack.models.nutritionModel;
+import com.example.nutritrack.repository.DatabaseHeper;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -38,10 +40,16 @@ public class SearchActivity extends AppCompatActivity {
 
     TextView calorieAmount, totalfatAmount, saturatedFatAmount, cholesterolAmount, SodiumAmount,
             totalCarbonhydrateAmount, dietaryFiberAmount, totalSugarAmount, proteinAmount,
-            vitaminAmount, calciumAmount, ironAmount, potassiumAmount, foodtitle;
+            calciumAmount, ironAmount, potassiumAmount, foodtitle;
+
+    TextView calorieUnit, totalFatUnit, satFatUnit, cholesterolUnit, sodiumUnit, totalCarbsUnit,
+    DietaryFiberUnit, totalSugarUnit, proteinUnit, calciumUnit, ironUnit, potassiumUnit;
 
     ImageButton btn_searchButton;
+    Button btn_addNutrition;
     String searchedFood;
+
+
 
     private RequestQueue requestQueue;
     private ArrayList<nutritionModel> nutritionList;
@@ -70,6 +78,22 @@ public class SearchActivity extends AppCompatActivity {
         potassiumAmount = findViewById(R.id.text_PotassiumAmount);
         foodtitle = findViewById(R.id.txtsearchedFood);
         btn_searchButton = findViewById(R.id.searchButton);
+        btn_addNutrition = findViewById(R.id.btn_addNutrition);
+
+        //units
+        calorieUnit =findViewById(R.id.txt_calorieUnit);
+        totalFatUnit =findViewById(R.id.txt_totalFatUnit);
+        satFatUnit =findViewById(R.id.txt_saturatedtFatUnit);
+        cholesterolUnit =findViewById(R.id.txt_cholesterolUnit);
+        sodiumUnit =findViewById(R.id.txt_sodiumUnit);
+        totalCarbsUnit =findViewById(R.id.txt_totalCarbsUnit);
+        DietaryFiberUnit =findViewById(R.id.txt_dietaryFiberUnit);
+        totalSugarUnit =findViewById(R.id.txt_totalSugarUnit);
+        proteinUnit =findViewById(R.id.txt_proteinUnit);
+        calciumUnit =findViewById(R.id.txt_calciumUnit);
+        ironUnit =findViewById(R.id.txt_ironUnit);
+        potassiumUnit =findViewById(R.id.txt_potassiumUnit);
+
 
         requestQueue = VolleySingleton.getInstance(this).getRequestQueue();
 
@@ -137,6 +161,20 @@ public class SearchActivity extends AppCompatActivity {
                             texviewnames.add(ironAmount);
                             texviewnames.add(potassiumAmount);
 
+                            ArrayList<TextView> units = new ArrayList<>();
+                            units.add(calorieUnit);
+                            units.add(totalFatUnit);
+                            units.add(satFatUnit);
+                            units.add(cholesterolUnit);
+                            units.add(sodiumUnit);
+                            units.add(totalCarbsUnit);
+                            units.add(DietaryFiberUnit);
+                            units.add(totalSugarUnit);
+                            units.add(proteinUnit);
+                            units.add(calciumUnit);
+                            units.add(ironUnit);
+                            units.add(potassiumUnit);
+
 
                             for (int i = 0; i<keys.size(); i++){
                                 JSONObject obj = response.getJSONObject("totalNutrients").getJSONObject(keys.get(i));
@@ -144,7 +182,8 @@ public class SearchActivity extends AppCompatActivity {
                                 String unit = obj.getString("unit");
 
                                 String formatAmount = decimalFormat.format(quantity);
-                                texviewnames.get(i).setText(formatAmount + " " +unit);
+                                texviewnames.get(i).setText(formatAmount);
+                                units.get(i).setText(unit);
 
                             }
 
@@ -172,6 +211,41 @@ public class SearchActivity extends AppCompatActivity {
 
 
         // String url = "https://api.edamam.com/api/nutrition-data?app_id=e0d93112&app_key=ae1aa249b69cad6d6b3aff0ca4ea61b1&nutrition-type=cooking&ingr=a%20cup%20of%20coffee";
+
+
+        btn_addNutrition.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                nutritionModel nutritionModel = new nutritionModel(
+                        SearchValue.getText().toString().trim(),
+                        Double.parseDouble(calorieAmount.getText().toString().trim()),
+                        Double.parseDouble(totalfatAmount.getText().toString().trim()),
+                        Double.parseDouble(saturatedFatAmount.getText().toString().trim()),
+                        Double.parseDouble(cholesterolAmount.getText().toString().trim()),
+                        Double.parseDouble(SodiumAmount.getText().toString().trim()),
+                        Double.parseDouble(totalCarbonhydrateAmount.getText().toString().trim()),
+                        Double.parseDouble(dietaryFiberAmount.getText().toString().trim()),
+                        Double.parseDouble( totalSugarAmount.getText().toString().trim()),
+                        Double.parseDouble( proteinAmount.getText().toString().trim()),
+                        Double.parseDouble( calciumAmount.getText().toString().trim()),
+                        Double.parseDouble(ironAmount.getText().toString().trim()),
+                        Double.parseDouble( potassiumAmount.getText().toString().trim()));
+
+
+
+                //database helper
+                DatabaseHeper NutriTrackdb = new DatabaseHeper(SearchActivity.this);
+//                boolean success = NutriTrackdb.addNutrition(nutritionModel);
+                NutriTrackdb.addNutrition(nutritionModel);
+
+                Toast.makeText(SearchActivity.this, "Success= ", Toast.LENGTH_SHORT).show();
+
+                Intent goToMainpage = new Intent(SearchActivity.this, MainActivity.class);
+                startActivity(goToMainpage);
+
+            }
+        });
 
 
     }
