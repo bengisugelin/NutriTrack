@@ -211,4 +211,70 @@ public class DatabaseHeper extends SQLiteOpenHelper {
         return returnList;
 
     }//end of checkUserLogin
+
+
+
+
+
+
+    public List<nutritionModel> getAllNutritionData(){
+
+        List<nutritionModel> returnList = new ArrayList<>();
+
+        //get data from the database
+        String query = "SELECT * FROM " + NUTRITION_TABLE_NAME  ;
+
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor =  db.rawQuery(query,null);
+
+        if(cursor.moveToFirst()){
+            //loop through the cursor (result set) and create new user objects. Put then into the return list.
+            do{
+                //int userId = cursor.getInt(0);
+                String foodName = cursor.getString(1);
+                String foodCalories = cursor.getString(2);
+                String foodTotalFat = cursor.getString(3);
+                String foodSaturatedFat = cursor.getString(4);
+                String foodCholesterol = cursor.getString(5);
+                String foodSodium = cursor.getString(6);
+                String foodtotalcarbs = cursor.getString(7);
+                String fooddietaryfiber = cursor.getString(8);
+                String foodtotalsugar = cursor.getString(9);
+                String foodprotein = cursor.getString(10);
+                String foodcalcium = cursor.getString(11);
+                String foodiron = cursor.getString(12);
+                String foodpotassium = cursor.getString(13);
+
+
+
+
+                nutritionModel newNutrition = new nutritionModel(foodName,
+                        Double.parseDouble(foodCalories),
+                        Double.parseDouble(foodTotalFat),
+                        Double.parseDouble(foodSaturatedFat),
+                        Double.parseDouble(foodCholesterol),
+                        Double.parseDouble(foodSodium),
+                        Double.parseDouble(foodtotalcarbs),
+                        Double.parseDouble(fooddietaryfiber),
+                        Double.parseDouble(foodtotalsugar),
+                        Double.parseDouble(foodprotein),
+                        Double.parseDouble(foodcalcium),
+                        Double.parseDouble(foodiron),
+                        Double.parseDouble(foodpotassium)
+                        );
+                returnList.add(newNutrition);
+
+            }while(cursor.moveToNext());
+        }else{
+
+            Toast.makeText(context, "failed", Toast.LENGTH_SHORT).show();
+            //failure. do not add anything to the list.
+        }
+        //close both the cursor and db when done
+        cursor.close();
+        db.close();
+
+        return returnList;
+
+    }//end of checkUserLogin
 }
