@@ -65,9 +65,10 @@ public class NewUserRegisterActivity extends AppCompatActivity {
 
                 //database helper
                 DatabaseHeper NutriTrackdb = new DatabaseHeper(NewUserRegisterActivity.this);
-                boolean success = NutriTrackdb.addUser(userModel);
+//                boolean success = NutriTrackdb.addUser(userModel);
+                NutriTrackdb.addUser(userModel);
 
-                Toast.makeText(NewUserRegisterActivity.this, "Success= " + success, Toast.LENGTH_SHORT).show();
+//                Toast.makeText(NewUserRegisterActivity.this, "Success= " + success, Toast.LENGTH_SHORT).show();
 
                 Intent goToLoginpage = new Intent(NewUserRegisterActivity.this, LoginActivity.class);
                 startActivity(goToLoginpage);

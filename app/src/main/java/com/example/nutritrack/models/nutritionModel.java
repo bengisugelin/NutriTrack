@@ -41,7 +41,6 @@ public class nutritionModel {
         this.dietary_fiber = dietary_fiber;
         this.total_sugars = total_sugars;
         this.protein = protein;
-
         this.calcium = calcium;
         this.iron = iron;
         this.potassium = potassium;

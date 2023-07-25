@@ -18,17 +18,19 @@
         android:text="Hello World!"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/progressBar_frag" />
+        app:layout_constraintTop_toBottomOf="@+id/progressBar" />
 
 
     <ProgressBar
-        android:id="@+id/progressBar_frag"
-        style="?android:attr/progressBarStyle"
+        android:id="@+id/progressBar"
+        style="?android:attr/progressBarStyleHorizontal"
         android:layout_width="200dp"
         android:layout_height="200dp"
         android:layout_marginTop="8dp"
         android:indeterminateOnly="false"
-        android:progressDrawable="@drawable/circle"
+        android:progressDrawable="@drawable/shape_circular_progress"
+        android:background="@drawable/circle"
+        android:max="100"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.54"
         app:layout_constraintStart_toStartOf="parent"
@@ -36,7 +38,7 @@
         tools:progress="60" />
 
     <TextView
-        android:id="@+id/textShowCalorieLeft_frag"
+        android:id="@+id/textShowCalorieLeft"
         android:layout_width="114dp"
         android:layout_height="49dp"
         android:fontFamily="serif"
@@ -45,14 +47,14 @@
         android:textColor="@color/teal_700"
         android:textSize="34sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@+id/progressBar_frag"
-        app:layout_constraintEnd_toEndOf="@+id/progressBar_frag"
-        app:layout_constraintStart_toStartOf="@+id/progressBar_frag"
-        app:layout_constraintTop_toTopOf="@+id/progressBar_frag"
-        tools:text="1774" />
+        app:layout_constraintBottom_toBottomOf="@+id/progressBar"
+        app:layout_constraintEnd_toEndOf="@+id/progressBar"
+        app:layout_constraintStart_toStartOf="@+id/progressBar"
+        app:layout_constraintTop_toTopOf="@+id/progressBar"
+        android:text="1774" />
 
     <TextView
-        android:id="@+id/textkcalleft_frag"
+        android:id="@+id/textkcalleft"
         android:layout_width="141dp"
         android:layout_height="29dp"
         android:fontFamily="serif"
@@ -61,13 +63,13 @@
         android:textColor="@color/teal_700"
         android:textSize="12sp"
         android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="@+id/progressBar_frag"
-        app:layout_constraintStart_toStartOf="@+id/progressBar_frag"
-        app:layout_constraintTop_toBottomOf="@+id/textShowCalorieLeft_frag"
-        tools:text="KCAL LEFT" />
+        app:layout_constraintEnd_toEndOf="@+id/progressBar"
+        app:layout_constraintStart_toStartOf="@+id/progressBar"
+        app:layout_constraintTop_toBottomOf="@+id/textShowCalorieLeft"
+        android:text="KCAL LEFT" />
 
     <TextView
-        android:id="@+id/textViewCalorieAmountEaten_frag"
+        android:id="@+id/textViewCalorieAmountEaten"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
@@ -75,51 +77,51 @@
         android:text="0"
         android:textSize="20sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/textViewCalorieConsumed_frag"
-        app:layout_constraintEnd_toStartOf="@+id/progressBar_frag"
+        app:layout_constraintBottom_toTopOf="@+id/textViewCalorieConsumed"
+        app:layout_constraintEnd_toStartOf="@+id/progressBar"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/progressBar_frag"
+        app:layout_constraintTop_toTopOf="@+id/progressBar"
         app:layout_constraintVertical_bias="1.0" />
 
     <TextView
-        android:id="@+id/textViewCalorieAmountEaten2_fr"
+        android:id="@+id/textViewCalorieAmountBurned"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="serif"
         android:text="0"
         android:textSize="20sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/textViewCalorieConsumed2_frag"
+        app:layout_constraintBottom_toTopOf="@+id/textViewCalorieBurned"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.476"
-        app:layout_constraintStart_toEndOf="@+id/progressBar_frag"
-        app:layout_constraintTop_toTopOf="@+id/progressBar_frag"
+        app:layout_constraintStart_toEndOf="@+id/progressBar"
+        app:layout_constraintTop_toTopOf="@+id/progressBar"
         app:layout_constraintVertical_bias="1.0" />
 
     <TextView
-        android:id="@+id/textViewCalorieConsumed_frag"
+        android:id="@+id/textViewCalorieConsumed"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:fontFamily="serif"
         android:text="EATEN"
         android:textSize="14sp"
-        app:layout_constraintBottom_toBottomOf="@+id/progressBar_frag"
-        app:layout_constraintEnd_toStartOf="@+id/progressBar_frag"
+        app:layout_constraintBottom_toBottomOf="@+id/progressBar"
+        app:layout_constraintEnd_toStartOf="@+id/progressBar"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/progressBar_frag" />
+        app:layout_constraintTop_toTopOf="@+id/progressBar" />
 
     <TextView
-        android:id="@+id/textViewCalorieConsumed2_frag"
+        android:id="@+id/textViewCalorieBurned"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="serif"
         android:text="BURNED"
         android:textSize="14sp"
-        app:layout_constraintBottom_toBottomOf="@+id/progressBar_frag"
+        app:layout_constraintBottom_toBottomOf="@+id/progressBar"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/progressBar_frag"
-        app:layout_constraintTop_toTopOf="@+id/progressBar_frag" />
+        app:layout_constraintStart_toEndOf="@+id/progressBar"
+        app:layout_constraintTop_toTopOf="@+id/progressBar" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView_chooseconsumption"
