@@ -10,20 +10,36 @@ import android.view.Window;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.example.nutritrack.R;
 import com.example.nutritrack.models.UserModel;
+import com.example.nutritrack.models.nutritionModel;
 import com.example.nutritrack.repository.DatabaseHeper;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.Period;
 import java.util.Calendar;
+import java.util.Date;
+import java.util.List;
 
 public class NewUserRegisterActivity extends AppCompatActivity {
     Button register;
     EditText fname, lname, username, password, dob, email, height, weight;
     Spinner activitylevel;
     DatePickerDialog datePickerDialog;
+
+    RadioGroup radioGroup;
+    RadioButton radioButtonmale, radiobuttonfemale;
+    String sex;
+
+    //database helper
+    DatabaseHeper NutriTrackdb = new DatabaseHeper(NewUserRegisterActivity.this);
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -41,6 +57,9 @@ public class NewUserRegisterActivity extends AppCompatActivity {
         height = findViewById(R.id.edittext_height);
         weight= findViewById(R.id.edittext_weight);
         activitylevel=findViewById(R.id.spinner_activitylevel);
+        radioGroup = findViewById(R.id.radioGroup);
+
+
 
         dob.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -48,25 +67,44 @@ public class NewUserRegisterActivity extends AppCompatActivity {
                 openDatePicker();
             }
         });
+
+
+
         //register button
         register.setOnClickListener(new View.OnClickListener() {
+
+
             @Override
             public void onClick(View view) {
+
+                if(radioGroup.getCheckedRadioButtonId()==-1){
+                    Toast.makeText(NewUserRegisterActivity.this, "Please select your biological sex", Toast.LENGTH_SHORT).show();
+                }else if(radioGroup.getCheckedRadioButtonId() == R.id.radioButtonMale){
+                    sex = "male";
+                }else if(radioGroup.getCheckedRadioButtonId() == R.id.radioButtonFemale){
+                    sex = "female";
+                }
+
 
                 UserModel userModel = new UserModel(fname.getText().toString().trim(),
                         lname.getText().toString().trim(),
                         username.getText().toString().trim(),
                         password.getText().toString().trim(),
+                        sex,
                         dob.getText().toString().trim(),
                         email.getText().toString().trim(),
                         Double.parseDouble(height.getText().toString().trim()),
                         Double.parseDouble(weight.getText().toString().trim()),
                         activitylevel.getSelectedItem().toString());
 
-                //database helper
-                DatabaseHeper NutriTrackdb = new DatabaseHeper(NewUserRegisterActivity.this);
+
 //                boolean success = NutriTrackdb.addUser(userModel);
                 NutriTrackdb.addUser(userModel);
+
+
+                //nutrotionmodel
+                nutritionModel nutritionModel = new nutritionModel("none",0,0,0,0,0,0,0,0,0,0,0,0);
+                NutriTrackdb.addNutrition(nutritionModel);
 
 //                Toast.makeText(NewUserRegisterActivity.this, "Success= " + success, Toast.LENGTH_SHORT).show();
 
@@ -104,4 +142,6 @@ public class NewUserRegisterActivity extends AppCompatActivity {
         datePickerDialog.show();
 
     }//end of opendatepicker
+
+
 }

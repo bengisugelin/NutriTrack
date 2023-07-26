@@ -7,6 +7,7 @@ public class UserModel {
 
     private String fname;
     private String lname;
+    private String sex;
 
     private String username;
     private String password;
@@ -19,11 +20,12 @@ public class UserModel {
     private String activityLevel; //sedentary, active etc.
 
 
-    public UserModel( String fname, String lname, String username, String password, String dob, String email, double height, double weight, String activitytype) {
+    public UserModel( String fname, String lname, String username, String password, String sex, String dob, String email, double height, double weight, String activitytype) {
         this.fname = fname;
         this.lname = lname;
         this.username = username;
         this.password = password;
+        this.sex = sex;
         this.dob = dob;
         this.email = email;
         this.height = height;
@@ -35,6 +37,13 @@ public class UserModel {
     }
 
 
+    public String getSex() {
+        return sex;
+    }
+
+    public void setSex(String sex) {
+        this.sex = sex;
+    }
 
     public String getFname() {
         return fname;
@@ -108,19 +117,19 @@ public class UserModel {
         this.activityLevel = activityLevel;
     }
 
-
     @Override
     public String toString() {
         return "UserModel{" +
-                ", fname='" + fname + '\'' +
+                "fname='" + fname + '\'' +
                 ", lname='" + lname + '\'' +
+                ", sex='" + sex + '\'' +
                 ", username='" + username + '\'' +
                 ", password='" + password + '\'' +
-                ", dob=" + dob +
+                ", dob='" + dob + '\'' +
                 ", email='" + email + '\'' +
                 ", height=" + height +
                 ", weight=" + weight +
-                ", activitytype='" + activityLevel + '\'' +
+                ", activityLevel='" + activityLevel + '\'' +
                 '}';
     }
 }
