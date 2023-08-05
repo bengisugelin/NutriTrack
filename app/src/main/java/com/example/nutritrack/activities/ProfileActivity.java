@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.Window;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import com.example.nutritrack.R;
@@ -22,6 +23,8 @@ public class ProfileActivity extends AppCompatActivity {
 
     TextView profileName;
     TextView profileemail;
+    TextView profileUsername, profileDob;
+    EditText profilePassword, profileEmail, profileHeight, profileWeight;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,6 +38,14 @@ public class ProfileActivity extends AppCompatActivity {
 
         profileName = findViewById(R.id.txtprofile_nameInfo);
         profileemail = findViewById(R.id.txtprofile_email);
+        profileUsername = findViewById(R.id.txt_profileUsername);
+        profileDob = findViewById(R.id.profileDOB);
+        profilePassword = findViewById(R.id.editTxt_profile_password);
+        profileEmail = findViewById(R.id.editText_email);
+        profileHeight = findViewById(R.id.editText_height);
+        profileWeight = findViewById(R.id.edittext_profileweight);
+
+
         bottomNavigationView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -73,6 +84,12 @@ public class ProfileActivity extends AppCompatActivity {
         for (int i = 0; i<userInfo.size(); i++) {
             profileName.setText(userInfo.get(i).getFname() + " " + userInfo.get(i).getLname());
             profileemail.setText(userInfo.get(i).getEmail());
+            profileUsername.setText(userInfo.get(i).getUsername());
+            profileDob.setText(userInfo.get(i).getDob());
+            profilePassword.setText(userInfo.get(i).getPassword());
+            profileEmail.setText(userInfo.get(i).getEmail());
+            profileHeight.setText(Double.toString(userInfo.get(i).getHeight()));
+            profileWeight.setText(Double.toString(userInfo.get(i).getWeight()));
         }
     }
 }
