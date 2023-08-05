@@ -18,12 +18,17 @@ import com.example.nutritrack.adapters.C_RecyclerViewAdapter;
 import com.example.nutritrack.adapters.C_RecyclerViewInterface;
 import com.example.nutritrack.models.ConsumptionModel;
 import com.example.nutritrack.R;
+import com.example.nutritrack.models.UserModel;
 import com.example.nutritrack.models.nutritionModel;
 import com.example.nutritrack.repository.DatabaseHeper;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements C_RecyclerViewInterface {
@@ -38,6 +43,9 @@ public class MainActivity extends AppCompatActivity implements C_RecyclerViewInt
     R.drawable.baseline_fitness_center_24};
 
     ProgressBar progressBar;
+
+    DatabaseHeper NutriTrackdb = new DatabaseHeper(MainActivity.this);
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -63,6 +71,8 @@ public class MainActivity extends AppCompatActivity implements C_RecyclerViewInt
         DatabaseHeper databaseHeper = new DatabaseHeper(MainActivity.this);
         List<nutritionModel> nutritionList = databaseHeper.getAllNutritionData();
 
+        double totalcalorieIntake = calculateDailyCalorieIntake();
+
         double totalcalorieeaten = 0;
 
 
@@ -72,10 +82,10 @@ public class MainActivity extends AppCompatActivity implements C_RecyclerViewInt
             totalcalorieeaten += nutritionList.get(i).getCalories();
             }
 
-        double calculateCalorieRatio = (totalcalorieeaten / 1774.0 )*100;
+        double calculateCalorieRatio = (totalcalorieeaten / totalcalorieIntake )*100;
         startAnimator(0, (int) calculateCalorieRatio);
 
-        showAmountcalorieLeft.setText(Integer.toString(1774 - (int)totalcalorieeaten));
+        showAmountcalorieLeft.setText(Integer.toString((int)totalcalorieIntake - (int)totalcalorieeaten));
         caloriAmounteaten.setText(Double.toString(totalcalorieeaten));
 
         //BottomNavigation
@@ -140,12 +150,86 @@ public class MainActivity extends AppCompatActivity implements C_RecyclerViewInt
     @Override
     public void onItemClicked(int position) {
 
-        Intent goTotheSearchActivity = new Intent(MainActivity.this, SearchActivity.class);
+        if(position == 4){
+
+            Intent goToTheSearchExerciseActivity = new Intent(MainActivity.this, SearchExerciseActivity.class);
+            startActivity(goToTheSearchExerciseActivity);
+
+        }else{
+            Intent goTotheSearchActivity = new Intent(MainActivity.this, SearchActivity.class);
+            startActivity(goTotheSearchActivity);
+        }
 
         getIntent().putExtra("NAME", consumptionModels.get(position).getConsumptionName());
 
-        startActivity(goTotheSearchActivity);
+    }
 
 
+    private double calculateDailyCalorieIntake(){
+
+        String username = "admin";
+        List<UserModel> userList =  NutriTrackdb.getAllData(username);
+
+        double BMR = 0;
+        double totalIntake = 0;
+
+        for (int i = 0; i < userList.size(); i++){
+            String dob = userList.get(i).getDob();
+            if (userList.get(i).getSex().equals("male")){
+                BMR = 66.5 + (13.75 * userList.get(i).getWeight()) + (5.003 * userList.get(i).getHeight()) - (6.75 * getAge(dob));
+            }else if(userList.get(i).getSex().equals("female")){
+                BMR = 655.1 + (9.563 * userList.get(i).getWeight() ) + (1.850 * userList.get(i).getHeight()) - (4.676 * getAge(dob));
+            }
+
+            if(userList.get(i).getActivityLevel().equals("sedentary")){
+                totalIntake = BMR*1.2;
+            } else if (userList.get(i).getActivityLevel().equals("lightly active")) {
+                totalIntake = BMR*1.375;
+            } else if (userList.get(i).getActivityLevel().equals("moderately active")) {
+                totalIntake = BMR*1.55;
+            }else if (userList.get(i).getActivityLevel().equals("very active")) {
+                totalIntake = BMR*1.725;
+            }else if (userList.get(i).getActivityLevel().equals("extra active")) {
+                totalIntake = BMR*1.9;
+            }
+        }
+
+
+
+        return totalIntake;
+    }
+
+    private int getAge(String dobString){
+
+        Date date = null;
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        try {
+            date = sdf.parse(dobString);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+        if(date == null) return 0;
+
+        Calendar dob = Calendar.getInstance();
+        Calendar today = Calendar.getInstance();
+
+        dob.setTime(date);
+
+        int year = dob.get(Calendar.YEAR);
+        int month = dob.get(Calendar.MONTH);
+        int day = dob.get(Calendar.DAY_OF_MONTH);
+
+        dob.set(year, month+1, day);
+
+        int age = today.get(Calendar.YEAR) - dob.get(Calendar.YEAR);
+
+        if (today.get(Calendar.DAY_OF_YEAR) < dob.get(Calendar.DAY_OF_YEAR)){
+            age--;
+        }
+
+
+
+        return age;
     }
 }

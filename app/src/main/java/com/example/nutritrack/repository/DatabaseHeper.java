@@ -31,6 +31,7 @@ public class DatabaseHeper extends SQLiteOpenHelper {
     private static final String LASTNAME = "lastname";
     private static final String USERNAME = "username";
     private static final String PASSWORD = "password";
+    private static final String SEX = "sex";
     private static final String DOB = "day_of_birth";
     private static final String EMAIL = "email";
     private static final String HEIGHT = "height";
@@ -78,6 +79,7 @@ public class DatabaseHeper extends SQLiteOpenHelper {
                 LASTNAME + " VARCHAR, " +
                 USERNAME + " VARCHAR, " +
                 PASSWORD + " VARCHAR, " +
+                SEX + " VARCHAR, " +
                 DOB + " VARCHAR, " +
                 EMAIL + " VARCHAR, " +
                 HEIGHT + " VARCHAR, " +
@@ -120,6 +122,7 @@ public class DatabaseHeper extends SQLiteOpenHelper {
         cv.put(LASTNAME, userModel.getLname());
         cv.put(USERNAME, userModel.getUsername());
         cv.put(PASSWORD, userModel.getPassword());
+        cv.put(SEX, userModel.getSex());
         cv.put(DOB, userModel.getDob());
         cv.put(EMAIL, userModel.getEmail());
         cv.put(HEIGHT, userModel.getHeight());
@@ -190,12 +193,13 @@ public class DatabaseHeper extends SQLiteOpenHelper {
                 String lname = cursor.getString(2);
                 String userName = cursor.getString(3);
                 String password = cursor.getString(4);
-                String dob = cursor.getString(5);
-                String email = cursor.getString(6);
-                Double height = Double.parseDouble(cursor.getString(7));
-                Double weight = Double.parseDouble(cursor.getString(8));
-                String activity_level = cursor.getString(9);
-                UserModel newUser = new UserModel(fname, lname, userName, password, dob, email,height,weight,activity_level);
+                String sex = cursor.getString(5);
+                String dob = cursor.getString(6);
+                String email = cursor.getString(7);
+                Double height = Double.parseDouble(cursor.getString(8));
+                Double weight = Double.parseDouble(cursor.getString(9));
+                String activity_level = cursor.getString(10);
+                UserModel newUser = new UserModel(fname, lname, userName, password,sex, dob, email,height,weight,activity_level);
                 returnList.add(newUser);
 
             }while(cursor.moveToNext());
@@ -228,6 +232,7 @@ public class DatabaseHeper extends SQLiteOpenHelper {
         Cursor cursor =  db.rawQuery(query,null);
 
         if(cursor.moveToFirst()){
+
             //loop through the cursor (result set) and create new user objects. Put then into the return list.
             do{
                 //int userId = cursor.getInt(0);
@@ -272,6 +277,9 @@ public class DatabaseHeper extends SQLiteOpenHelper {
         }
         //close both the cursor and db when done
         cursor.close();
+
+
+
         db.close();
 
         return returnList;

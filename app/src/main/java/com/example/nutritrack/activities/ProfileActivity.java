@@ -7,13 +7,21 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.Window;
+import android.widget.TextView;
 
 import com.example.nutritrack.R;
+import com.example.nutritrack.models.UserModel;
+import com.example.nutritrack.repository.DatabaseHeper;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
 
+import java.util.List;
+
 public class ProfileActivity extends AppCompatActivity {
 
+
+    TextView profileName;
+    TextView profileemail;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -24,6 +32,9 @@ public class ProfileActivity extends AppCompatActivity {
         //BottomNavigation
         BottomNavigationView bottomNavigationView = findViewById(R.id.BottomNavigationView);
         bottomNavigationView.setSelectedItemId(R.id.profile);
+
+        profileName = findViewById(R.id.txtprofile_nameInfo);
+        profileemail = findViewById(R.id.txtprofile_email);
         bottomNavigationView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -53,5 +64,15 @@ public class ProfileActivity extends AppCompatActivity {
                 return false;
             }
         });
+
+        DatabaseHeper databaseHelper = new DatabaseHeper(ProfileActivity.this);
+        List<UserModel> userInfo = databaseHelper.getAllData("admin");
+
+
+
+        for (int i = 0; i<userInfo.size(); i++) {
+            profileName.setText(userInfo.get(i).getFname() + " " + userInfo.get(i).getLname());
+            profileemail.setText(userInfo.get(i).getEmail());
+        }
     }
 }

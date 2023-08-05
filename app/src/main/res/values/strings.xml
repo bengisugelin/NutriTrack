@@ -11,12 +11,12 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string-array name="activity_level">
-        <item>once a week</item>
-        <item>twice a week</item>
-        <item>three times a week</item>
-        <item>more than 3 times a week</item>
-        <item>2 times in a month</item>
-        <item>none</item>
+        <item>sedentary</item>
+        <item>lightly active</item>
+        <item>moderately active</item>
+        <item>very active</item>
+        <item>extra active</item>
+
     </string-array>
     <string name="title_activity_log">LogActivity</string>
     <string name="prompt_email">Email</string>
