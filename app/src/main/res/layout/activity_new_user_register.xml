@@ -240,7 +240,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView10" />
 
     <Spinner
-        android:id="@+id/spinner_activitylevel"
+        android:id="@+id/spinner_activitylevel_profile"
         android:layout_width="240dp"
         android:layout_height="48dp"
         android:layout_marginStart="8dp"
@@ -262,7 +262,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.995"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/spinner_activitylevel"
+        app:layout_constraintTop_toBottomOf="@+id/spinner_activitylevel_profile"
         app:layout_constraintVertical_bias="0.322" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
