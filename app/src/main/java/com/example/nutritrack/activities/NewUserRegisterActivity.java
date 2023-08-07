@@ -20,13 +20,7 @@ import com.example.nutritrack.models.UserModel;
 import com.example.nutritrack.models.nutritionModel;
 import com.example.nutritrack.repository.DatabaseHeper;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.time.Period;
 import java.util.Calendar;
-import java.util.Date;
-import java.util.List;
 
 public class NewUserRegisterActivity extends AppCompatActivity {
     Button register;
@@ -56,7 +50,7 @@ public class NewUserRegisterActivity extends AppCompatActivity {
         email = findViewById(R.id.editTextTextEmailAddress);
         height = findViewById(R.id.edittext_height);
         weight= findViewById(R.id.edittext_weight);
-        activitylevel=findViewById(R.id.spinner_activitylevel);
+        activitylevel=findViewById(R.id.spinner_activitylevel_profile);
         radioGroup = findViewById(R.id.radioGroup);
 
 

@@ -13,6 +13,7 @@ import android.view.MenuItem;
 import android.view.Window;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.nutritrack.adapters.C_RecyclerViewAdapter;
 import com.example.nutritrack.adapters.C_RecyclerViewInterface;
@@ -24,6 +25,7 @@ import com.example.nutritrack.repository.DatabaseHeper;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
 
+import java.text.DecimalFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -46,12 +48,29 @@ public class MainActivity extends AppCompatActivity implements C_RecyclerViewInt
 
     DatabaseHeper NutriTrackdb = new DatabaseHeper(MainActivity.this);
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         getSupportActionBar().hide();
         setContentView(R.layout.activity_main);
+
+
+
+        //to import the username to the new hours page
+        try {
+            Bundle bundle = getIntent().getExtras();
+            String username = bundle.getString("USERNAME", "user");
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
+
+
+        //Toast.makeText(this, "Welcome" + username, Toast.LENGTH_SHORT).show();
+
+
 
         RecyclerView recyclerView = findViewById(R.id.recyclerView_chooseconsumption);
         setupConsumptionItems();
@@ -71,7 +90,9 @@ public class MainActivity extends AppCompatActivity implements C_RecyclerViewInt
         DatabaseHeper databaseHeper = new DatabaseHeper(MainActivity.this);
         List<nutritionModel> nutritionList = databaseHeper.getAllNutritionData();
 
-        double totalcalorieIntake = calculateDailyCalorieIntake();
+        Bundle bundle = getIntent().getExtras();
+        String username = bundle.getString("USERNAME", "user");
+        double totalcalorieIntake = calculateDailyCalorieIntake(username);
 
         double totalcalorieeaten = 0;
 
@@ -82,11 +103,16 @@ public class MainActivity extends AppCompatActivity implements C_RecyclerViewInt
             totalcalorieeaten += nutritionList.get(i).getCalories();
             }
 
+        DecimalFormat decimalFormat = new DecimalFormat("#.##");
+
         double calculateCalorieRatio = (totalcalorieeaten / totalcalorieIntake )*100;
         startAnimator(0, (int) calculateCalorieRatio);
 
+        String formatAmount = decimalFormat.format(totalcalorieeaten);
         showAmountcalorieLeft.setText(Integer.toString((int)totalcalorieIntake - (int)totalcalorieeaten));
-        caloriAmounteaten.setText(Double.toString(totalcalorieeaten));
+        caloriAmounteaten.setText(formatAmount);
+
+
 
         //BottomNavigation
         BottomNavigationView bottomNavigationView = findViewById(R.id.BottomNavigationView);
@@ -99,18 +125,35 @@ public class MainActivity extends AppCompatActivity implements C_RecyclerViewInt
                         return true;
                     case R.id.profile:
                         Intent goToProfilePage = new Intent(MainActivity.this, ProfileActivity.class);
+                        //to export the username to the profile page
+                        Bundle bundle = new Bundle();
+
+                        bundle.putString("USERNAME", username);
+                        goToProfilePage.putExtras(bundle);
                         startActivity(goToProfilePage);
                         overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
                         finish();
                         return true;
                     case R.id.log:
                         Intent goToLogPage = new Intent(MainActivity.this, LogActivity.class);
+
+
+                        Bundle bundle_log = new Bundle();
+                        bundle_log.putString("USERNAME", username);
+                        goToLogPage.putExtras(bundle_log);
+
                         startActivity(goToLogPage);
                         overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
                         finish();
                         return true;
                     case R.id.discover:
                         Intent goToDiscoverPage = new Intent(MainActivity.this, DiscoverActivity.class);
+
+                        Bundle bundle_dis = new Bundle();
+                        bundle_dis.putString("USERNAME", username);
+                        goToDiscoverPage.putExtras(bundle_dis);
+
+
                         startActivity(goToDiscoverPage);
                         overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
                         finish();
@@ -165,9 +208,10 @@ public class MainActivity extends AppCompatActivity implements C_RecyclerViewInt
     }
 
 
-    private double calculateDailyCalorieIntake(){
+    private double calculateDailyCalorieIntake(String username){
 
-        String username = "admin";
+       // String username = "juliana";
+
         List<UserModel> userList =  NutriTrackdb.getAllData(username);
 
         double BMR = 0;

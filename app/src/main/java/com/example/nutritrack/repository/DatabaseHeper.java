@@ -285,4 +285,35 @@ public class DatabaseHeper extends SQLiteOpenHelper {
         return returnList;
 
     }//end of checkUserLogin
+
+
+    public void  updateProfileData(String fname, String lname, String userName, String password,String sex, String dob, String email, Double height,Double weight,String activity_level ){
+
+
+        //calling a method to get writable database
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues cv = new ContentValues();
+
+        cv.put(FIRSTNAME, fname);
+        cv.put(LASTNAME, lname);
+        cv.put(USERNAME, userName);
+        cv.put(PASSWORD, password);
+        cv.put(SEX, sex);
+        cv.put(DOB, dob);
+        cv.put(EMAIL, email);
+        cv.put(HEIGHT, height);
+        cv.put(WEIGHT, weight);
+        cv.put(ACTIVITY_LEVEL, activity_level);
+
+
+
+        long result = db.update(USER_TABLE_NAME,cv,"username=?", new String[]{userName});
+        db.close();
+//        if(result==-1){
+//            Toast.makeText(context, "Failed to update", Toast.LENGTH_SHORT).show();
+//
+//        }else{
+//            Toast.makeText(context, "Updated succesfully", Toast.LENGTH_SHORT).show();
+//        }
+    }
 }

@@ -1,17 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginStart="10dp"
-    android:layout_marginTop="6dp"
 
-    android:layout_marginEnd="10dp"
-    android:layout_marginRight="6dp"
     android:background="@drawable/background2"
     tools:context=".activities.ProfileActivity">
 
+
+    <Button
+        android:id="@+id/button_updateProfile"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="32dp"
+        android:layout_marginBottom="8dp"
+        android:text="Update my info"
+        app:layout_constraintBottom_toTopOf="@+id/BottomNavigationView"
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <ScrollView
         android:layout_width="match_parent"
@@ -51,10 +58,9 @@
 
                     <ImageView
                         android:id="@+id/imageView2"
-                        android:layout_width="205dp"
-                        android:layout_height="101dp"
-                        android:layout_marginTop="16dp"
-                        app:layout_constraintEnd_toEndOf="parent"
+                        android:layout_width="169dp"
+                        android:layout_height="104dp"
+                        android:layout_marginTop="8dp"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
                         app:srcCompat="@drawable/img" />
@@ -63,28 +69,42 @@
                         android:id="@+id/txtprofile_nameInfo"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp"
+                        android:layout_marginTop="24dp"
+                        android:layout_marginEnd="48dp"
                         android:text="Name Surname"
                         android:textColor="#FFFFFF"
                         android:textSize="20sp"
                         android:textStyle="bold"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/imageView2" />
+                        app:layout_constraintStart_toEndOf="@+id/imageView2"
+                        app:layout_constraintTop_toTopOf="parent" />
 
                     <TextView
                         android:id="@+id/txtprofile_email"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginEnd="48dp"
                         android:text="email"
                         android:textColor="#FFFFFF"
                         android:textSize="16sp"
                         android:textStyle="normal"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.498"
-                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/imageView2"
                         app:layout_constraintTop_toBottomOf="@+id/txtprofile_nameInfo" />
+
+                    <TextView
+                        android:id="@+id/txt_profilesex"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginEnd="48dp"
+                        android:textColor="#FFFFFF"
+                        android:textSize="16sp"
+                        android:textStyle="normal"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/imageView2"
+                        app:layout_constraintTop_toBottomOf="@+id/txtprofile_email" />
 
                     <ImageView
                         android:id="@+id/imageView4"
@@ -99,9 +119,9 @@
 
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="match_parent"
-                        android:layout_height="350dp"
+                        android:layout_height="400dp"
                         android:layout_marginStart="16dp"
-                        android:layout_marginTop="16dp"
+                        android:layout_marginTop="45dp"
                         android:layout_marginEnd="16dp"
                         android:background="@drawable/profile_white_background"
                         app:layout_constraintEnd_toEndOf="parent"
@@ -221,7 +241,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="16dp"
-                            android:layout_marginTop="32dp"
+                            android:layout_marginTop="16dp"
                             android:text="Weight:"
                             android:textColor="#367385"
                             android:textSize="16sp"
@@ -234,37 +254,40 @@
                             android:layout_width="99dp"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="98dp"
-                            android:layout_marginTop="24dp"
+                            android:layout_marginTop="8dp"
                             android:layout_marginEnd="80dp"
 
                             android:ems="10"
                             android:inputType="textPersonName"
+                            android:minHeight="48dp"
                             android:textColor="#44575C"
                             android:textSize="16sp"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toEndOf="@+id/textView19"
-                            app:layout_constraintTop_toBottomOf="@+id/profileDOB" />
+                            app:layout_constraintTop_toBottomOf="@+id/profileDOB"
+                            tools:ignore="SpeakableTextPresentCheck" />
 
                         <TextView
                             android:id="@+id/textView18"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="16dp"
-                            android:layout_marginTop="24dp"
+                            android:layout_marginTop="8dp"
                             android:text="Height:"
                             android:textColor="#367385"
                             android:textSize="16sp"
                             android:textStyle="bold"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@+id/textView19" />
+                            app:layout_constraintTop_toBottomOf="@+id/textView19"
+                            app:layout_constraintVertical_bias="0.316" />
 
                         <EditText
                             android:id="@+id/editText_height"
                             android:layout_width="108dp"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="98dp"
-                            android:layout_marginTop="16dp"
+                            android:layout_marginTop="8dp"
                             android:layout_marginEnd="72dp"
                             android:layout_marginBottom="16dp"
                             android:ems="10"
@@ -274,8 +297,36 @@
                             android:textSize="16sp"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintHorizontal_bias="0.562"
                             app:layout_constraintStart_toEndOf="@+id/textView18"
                             app:layout_constraintTop_toBottomOf="@+id/edittext_profileweight"
+                            app:layout_constraintVertical_bias="0.0"
+                            tools:ignore="SpeakableTextPresentCheck" />
+
+                        <TextView
+                            android:id="@+id/spinnertext"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="16dp"
+                            android:layout_marginTop="32dp"
+                            android:text="Activity level:"
+                            android:textColor="#367385"
+                            android:textSize="16sp"
+                            android:textStyle="bold"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/textView18"
+                            app:layout_constraintVertical_bias="0.0" />
+
+                        <Spinner
+                            android:id="@+id/spinner_activitylevel_profile"
+                            android:layout_width="240dp"
+                            android:layout_height="48dp"
+                            android:layout_marginTop="16dp"
+                            android:entries="@array/activity_level"
+                            android:spinnerMode="dialog"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/editText_height"
                             tools:ignore="SpeakableTextPresentCheck" />
 
                     </androidx.constraintlayout.widget.ConstraintLayout>
