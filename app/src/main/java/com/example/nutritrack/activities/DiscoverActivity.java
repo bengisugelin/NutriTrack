@@ -2,14 +2,22 @@ package com.example.nutritrack.activities;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
 import android.view.Window;
-import android.widget.TextView;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ImageButton;
+import android.widget.Toast;
 
 import com.example.nutritrack.R;
+import com.example.nutritrack.adapters.DiscoverRecyclerViewAdapter;
+import com.example.nutritrack.models.RecipeModel;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
 
@@ -18,6 +26,8 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import okhttp3.Call;
 import okhttp3.Callback;
@@ -27,7 +37,11 @@ import okhttp3.Response;
 
 public class DiscoverActivity extends AppCompatActivity {
 
-    TextView txtdiscover, txtserving,txtingredients;
+    EditText searchedvalue;
+    ImageButton searchButton;
+    ArrayList<RecipeModel> recipeModelList = new ArrayList<>();
+
+    String searchedfood;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,69 +53,85 @@ public class DiscoverActivity extends AppCompatActivity {
         String username = bundle.getString("USERNAME", "user");
 
 
-        txtdiscover = findViewById(R.id.txt_discover);
-        txtserving = findViewById(R.id.discover_serving);
-        txtingredients = findViewById(R.id.discover_ingredients);
-        OkHttpClient client = new OkHttpClient();
-
-        Request request = new Request.Builder()
-                .url("https://recipe-by-api-ninjas.p.rapidapi.com/v1/recipe?query=italian%20wedding%20soup")
-                .get()
-                .addHeader("X-RapidAPI-Key", "0bcdcbf499msha7624a7863f76a1p1af981jsnfa988a719a48")
-                .addHeader("X-RapidAPI-Host", "recipe-by-api-ninjas.p.rapidapi.com")
-                .build();
+        searchedvalue = findViewById(R.id.discover_editText_searchedfood);
 
 
+        searchButton = findViewById(R.id.recipe_searchButton);
 
-        client.newCall(request).enqueue(new Callback() {
+        searchButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onFailure(@NonNull Call call, @NonNull IOException e) {
-                e.printStackTrace();
-            }
+            public void onClick(View view) {
+                searchedfood = searchedvalue.getText().toString();
+                String foodnametoinserttoURL = searchedfood.replace(" ", "%20").toLowerCase();
 
-            @Override
-            public void onResponse(@NonNull Call call, @NonNull Response response) throws IOException {
+              //  Toast.makeText(DiscoverActivity.this, foodnametoinserttoURL, Toast.LENGTH_SHORT).show();
+                OkHttpClient client = new OkHttpClient();
 
-                if(response.isSuccessful()){
-
-                    String recipe_title;
-                    String recipe_ingredients;
-                    String servings;
-
-                    try {
-                        String responsebody = response.body().string();
-                        JSONArray jsonArray = new JSONArray(responsebody); // Convert the string to a JSON object
-
-                        JSONObject jsonObject =jsonArray.getJSONObject(0);
-                        recipe_title = jsonObject.getString("title");
-
-                        recipe_ingredients = jsonObject.getString("ingredients");
-
-                        servings = jsonObject.getString("servings");
+                Request request = new Request.Builder()
+                        .url("https://recipe-by-api-ninjas.p.rapidapi.com/v1/recipe?query="+foodnametoinserttoURL)
+                        .get()
+                        .addHeader("X-RapidAPI-Key", "0bcdcbf499msha7624a7863f76a1p1af981jsnfa988a719a48")
+                        .addHeader("X-RapidAPI-Host", "recipe-by-api-ninjas.p.rapidapi.com")
+                        .build();
 
 
 
-
-
-
-                    } catch (JSONException e) {
-                        throw new RuntimeException(e);
+                client.newCall(request).enqueue(new Callback() {
+                    @Override
+                    public void onFailure(@NonNull Call call, @NonNull IOException e) {
+                        e.printStackTrace();
                     }
 
-                    DiscoverActivity.this.runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            txtdiscover.setText(recipe_title);
+                    @Override
+                    public void onResponse(@NonNull Call call, @NonNull Response response) throws IOException {
 
-                            txtserving.setText(servings);
+                        if(response.isSuccessful()){
 
-                            txtingredients.setText(recipe_ingredients);
+
+                            try {
+                                String responsebody = response.body().string();
+                                JSONArray jsonArray = new JSONArray(responsebody); // Convert the string to a JSON object
+
+
+                                List<RecipeModel> tempRecipeList = new ArrayList<>();
+
+                                for (int i =0; i<jsonArray.length(); i++){
+                                    JSONObject jsonObject =jsonArray.getJSONObject(i);
+                                    tempRecipeList.add(new RecipeModel(jsonObject.getString("title"),
+                                            jsonObject.getString("servings"),
+                                            jsonObject.getString("ingredients"),
+                                            jsonObject.getString("instructions")));
+                                }
+
+
+                                DiscoverActivity.this.runOnUiThread(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        recipeModelList.clear();
+                                        recipeModelList.addAll(tempRecipeList);
+
+                                        RecyclerView recyclerView = findViewById(R.id.discover_recyclerview);
+                                        DiscoverRecyclerViewAdapter adapter = new DiscoverRecyclerViewAdapter(DiscoverActivity.this,recipeModelList);
+                                        recyclerView.setAdapter(adapter);
+                                        recyclerView.setLayoutManager(new LinearLayoutManager(DiscoverActivity.this));
+
+
+                                    }
+                                });
+
+
+                            } catch (JSONException e) {
+                                throw new RuntimeException(e);
+                            }
+
 
                         }
-                    });
-                }
+                    }
+                });
             }
         });
+
+
 
 
         //BottomNavigation

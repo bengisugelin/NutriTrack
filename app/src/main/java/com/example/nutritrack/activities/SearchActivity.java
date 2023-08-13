@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.view.KeyEvent;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
@@ -26,13 +25,11 @@ import com.example.nutritrack.apis.VolleySingleton;
 import com.example.nutritrack.models.nutritionModel;
 import com.example.nutritrack.repository.DatabaseHeper;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
-import java.util.List;
 
 public class SearchActivity extends AppCompatActivity {
 
@@ -63,7 +60,7 @@ public class SearchActivity extends AppCompatActivity {
 
         String name = getIntent().getStringExtra("NAME");
 
-        SearchValue = findViewById(R.id.editText_searchedfood);
+        SearchValue = findViewById(R.id.discover_editText_searchedfood);
         calorieAmount = findViewById(R.id.txt_calorieAmount);
         totalfatAmount = findViewById(R.id.text_totalFatAmount);
         saturatedFatAmount = findViewById(R.id.text_SaturatedFatAmount);
@@ -77,7 +74,7 @@ public class SearchActivity extends AppCompatActivity {
         ironAmount = findViewById(R.id.text_IronAmount);
         potassiumAmount = findViewById(R.id.text_PotassiumAmount);
         foodtitle = findViewById(R.id.txtsearchedFood);
-        btn_searchButton = findViewById(R.id.searchButton);
+        btn_searchButton = findViewById(R.id.recipe_searchButton);
         btn_addNutrition = findViewById(R.id.btn_addNutrition);
 
         //units
