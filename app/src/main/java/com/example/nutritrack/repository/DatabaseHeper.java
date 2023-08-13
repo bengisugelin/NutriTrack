@@ -10,6 +10,7 @@ import android.widget.Toast;
 import androidx.annotation.Nullable;
 
 import com.example.nutritrack.models.UserModel;
+import com.example.nutritrack.models.logModel;
 import com.example.nutritrack.models.nutritionModel;
 
 import java.util.ArrayList;
@@ -285,6 +286,21 @@ public class DatabaseHeper extends SQLiteOpenHelper {
         return returnList;
 
     }//end of checkUserLogin
+
+    public void deleteLog(String foodname){
+        SQLiteDatabase db = getWritableDatabase();
+
+
+        long result= db.delete(NUTRITION_TABLE_NAME, "food_name= ?", new String[]{foodname} );
+
+//        if(result==-1){
+//            Toast.makeText(context, "Failed", Toast.LENGTH_SHORT).show();
+//            return false;
+//        }else{
+//            Toast.makeText(context, "Deleted", Toast.LENGTH_SHORT).show();
+//            return true;
+//        }
+    }
 
 
     public void  updateProfileData(String fname, String lname, String userName, String password,String sex, String dob, String email, Double height,Double weight,String activity_level ){
