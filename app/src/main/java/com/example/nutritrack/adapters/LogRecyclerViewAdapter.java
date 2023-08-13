@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -18,10 +19,12 @@ public class LogRecyclerViewAdapter extends RecyclerView.Adapter<LogRecyclerView
 
     Context context;
     ArrayList<logModel> logmodellist;
+    private final LogRecyclerViewInterface recyclerViewInterface;
 
-    public LogRecyclerViewAdapter(Context context, ArrayList<logModel> logmodellist) {
+    public LogRecyclerViewAdapter(Context context, ArrayList<logModel> logmodellist, LogRecyclerViewInterface recyclerViewInterface) {
         this.context = context;
         this.logmodellist = logmodellist;
+        this.recyclerViewInterface = recyclerViewInterface;
     }
 
     @NonNull
@@ -29,7 +32,7 @@ public class LogRecyclerViewAdapter extends RecyclerView.Adapter<LogRecyclerView
     public LogRecyclerViewAdapter.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(context);
         View view = inflater.inflate(R.layout.log_recyclerview_content,parent,false);
-        return new LogRecyclerViewAdapter.MyViewHolder(view);
+        return new LogRecyclerViewAdapter.MyViewHolder(view,recyclerViewInterface);
     }
 
     @Override
@@ -47,11 +50,27 @@ public class LogRecyclerViewAdapter extends RecyclerView.Adapter<LogRecyclerView
     public static class MyViewHolder extends RecyclerView.ViewHolder{
 
         TextView foodname, foodcalorie;
-        public MyViewHolder(@NonNull View itemView) {
+        ImageView delete;
+        public MyViewHolder(@NonNull View itemView,LogRecyclerViewInterface recyclerViewInterface) {
             super(itemView);
 
             foodname = itemView.findViewById(R.id.log_txt_foodName);
             foodcalorie=itemView.findViewById(R.id.log_txt_foodCalorie);
+            delete = itemView.findViewById(R.id.log_delete);
+
+            delete.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if(recyclerViewInterface != null){
+
+                        int position = getAdapterPosition();
+                        if(position != RecyclerView.NO_POSITION){
+                            recyclerViewInterface.onItemClick(position);
+                        }
+                    }
+                }
+            });
+
         }
     }
 }

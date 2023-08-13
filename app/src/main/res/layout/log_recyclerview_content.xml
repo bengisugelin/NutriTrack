@@ -46,7 +46,7 @@
                 android:layout_marginBottom="16dp"
                 android:text="KCAL"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/imageView3"
+                app:layout_constraintEnd_toStartOf="@+id/log_delete"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
@@ -62,7 +62,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <ImageView
-                android:id="@+id/imageView3"
+                android:id="@+id/log_delete"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
